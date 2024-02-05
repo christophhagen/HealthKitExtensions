@@ -103,7 +103,7 @@ try await HKHealthStore().requestAuthorization(
     read: SkippedHeartbeat.self, SleepChanges.self)
 ```
 
-It's also possible to pass a `Set` of types instead of variadic arguments.
+It's also possible to pass an array of types instead of variadic arguments.
 
 ### Saving to the health store
 
