@@ -114,6 +114,14 @@ public enum MetadataKey {
      */
     case foodType
 
+    /**
+     The medical reason for administering insulin.
+
+     This key is required for ``insulinDelivery`` samples.
+     It takes an ``NSNumber`` object containing a ``HKInsulinDeliveryReason`` value.
+     */
+    case insulinDeliveryReason
+
     public var rawValue: String {
         switch self {
         case .externalUUID: return HKMetadataKeyExternalUUID
@@ -128,6 +136,7 @@ public enum MetadataKey {
         case .appleDeviceCalibrated: return HKMetadataKeyAppleDeviceCalibrated
         case .devicePlacementSide: return HKMetadataKeyDevicePlacementSide
         case .foodType: return HKMetadataKeyFoodType
+        case .insulinDeliveryReason: return HKMetadataKeyInsulinDeliveryReason
         }
     }
 }
