@@ -104,6 +104,11 @@ try await HKHealthStore().requestAuthorization(
 ```
 
 It's also possible to pass an array of types instead of variadic arguments.
+To check the authorization status, there are also overloads:
+
+```swift
+let status = store.authorizationStatus(for: SexualActivity.self)
+```
 
 ### Saving to the health store
 

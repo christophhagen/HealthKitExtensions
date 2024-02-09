@@ -163,4 +163,21 @@ extension HKHealthStore {
         let results = try await descriptor.result(for: self)
         return results.map { T.init(sample: $0) }
     }
+
+    /**
+     Returns the app’s authorization status for sharing the specified data type.
+
+     This method checks the authorization status for saving data.
+     
+     To help prevent possible leaks of sensitive health information, your app cannot determine whether or not a user has granted permission to read data.
+     If you are not given permission, it simply appears as if there is no data of the requested type in the HealthKit store.
+     If your app is given share permission but not read permission, you see only the data that your app has written to the store.
+     Data from other sources remains hidden.
+
+     - Parameter type: The type of data. This can be any concrete subclass of the ``HKObjectContainer`` protocol.
+     - Returns: A value indicating the app’s authorization status for this type. For a list of possible values, see ``HKAuthorizationStatus``.
+     */
+    public func authorizationStatus(for type: HKObjectContainer.Type) -> HKAuthorizationStatus {
+        authorizationStatus(for: type.objectType)
+    }
 }
