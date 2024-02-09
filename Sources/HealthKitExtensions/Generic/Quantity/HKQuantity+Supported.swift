@@ -5,6 +5,7 @@ extension HKQuantityType {
 
     private static var justReadableTypesPriorIOS16: [HKQuantitySampleContainer.Type] {
         [
+            AppleExerciseTime.self,
             AppleMoveTime.self,
             AppleStandTime.self,
             NikeFuel.self,
@@ -41,7 +42,6 @@ extension HKQuantityType {
 
             // Fitness
             ActiveEnergyBurned.self,
-            AppleExerciseTime.self,
             BasalEnergyBurned.self,
             DistanceCycling.self,
             DistanceDownhillSnowSports.self,
