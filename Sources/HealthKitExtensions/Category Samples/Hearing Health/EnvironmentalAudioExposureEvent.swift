@@ -19,4 +19,4 @@ extension HKCategoryValueEnvironmentalAudioExposureEvent: HKCategoryTypeIdentifi
 
  Samples of this type use values from the ``HKCategoryValueEnvironmentalAudioExposureEvent`` enumeration.
  */
-typealias EnvironmentalAudioExposureEvent = HKCategoryEnumSample<HKCategoryValueEnvironmentalAudioExposureEvent>
+public typealias EnvironmentalAudioExposureEvent = HKCategoryEnumSample<HKCategoryValueEnvironmentalAudioExposureEvent>
