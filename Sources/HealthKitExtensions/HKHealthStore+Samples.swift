@@ -128,6 +128,7 @@ extension HKHealthStore {
         try await requestAuthorization(toShare: typesToShare, read: typesToRead)
     }
 
+    @available(iOS 15.4, *)
     public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKQuantitySample>], limit: Int? = nil) async throws -> [T] where T: HKQuantitySampleContainer {
 
         let descriptor = HKSampleQueryDescriptor(
@@ -139,6 +140,7 @@ extension HKHealthStore {
         return results.map { T.init(sample: $0) }
     }
 
+    @available(iOS 15.4, *)
     public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCorrelation>], limit: Int? = nil) async throws -> [T] where T: HKCorrelationContainer {
 
         let descriptor = HKSampleQueryDescriptor(
@@ -150,6 +152,7 @@ extension HKHealthStore {
         return results.map { T.init(sample: $0) }
     }
 
+    @available(iOS 15.4, *)
     public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCategorySample>], limit: Int? = nil) async throws -> [T] where T: HKCategorySampleContainer {
 
         let descriptor = HKSampleQueryDescriptor(

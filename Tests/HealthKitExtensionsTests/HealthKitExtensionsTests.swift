@@ -262,6 +262,7 @@ final class HealthKitExtensionsTests: XCTestCase {
         try await store.requestAuthorization(toShare: HKCategoryType.writableTypes, read: HKCategoryType.readableTypes)
     }
 
+    @available(iOS 15.4, *)
     func testReadData() async throws {
         let store = HKHealthStore()
         let predicate = HKQuery.predicateForSamples(withStart: now, end: now, options: [])
