@@ -36,4 +36,4 @@ public struct AppleSleepingWristTemperatureSpecification: HKQuantityTypeSpecific
  The default unit is degrees celsius.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-typealias AppleSleepingWristTemperature = HKQuantityValue<AppleSleepingWristTemperatureSpecification>
+public typealias AppleSleepingWristTemperature = HKQuantityValue<AppleSleepingWristTemperatureSpecification>
