@@ -19,4 +19,6 @@ extension HKCategorySampleContainer {
     }
 
     public static var sampleType: HKSampleType { categorySampleType }
+
+    public var categorySampleType: HKCategoryType { Self.categorySampleType }
 }

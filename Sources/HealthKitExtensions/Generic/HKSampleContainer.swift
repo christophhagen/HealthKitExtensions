@@ -23,4 +23,6 @@ extension HKSampleContainer {
     public init(object: HKObject) {
         self.init(sample: object as! HKSample)
     }
+
+    public var sampleType: HKSampleType { Self.sampleType }
 }

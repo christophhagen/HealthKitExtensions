@@ -37,4 +37,5 @@ extension HKQuantitySampleContainer {
      */
     public var count: Int { quantitySample.count }
 
+    public var quantitySampleType: HKQuantityType { Self.quantitySampleType }
 }

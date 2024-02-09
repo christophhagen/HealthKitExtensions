@@ -32,4 +32,6 @@ extension HKObjectContainer {
     public var cleanMetadata: [String : Any] {
         metadata?.excluding(key: .externalUUID) ?? [:]
     }
+    
+    public var objectType: HKObjectType { Self.objectType }
 }
