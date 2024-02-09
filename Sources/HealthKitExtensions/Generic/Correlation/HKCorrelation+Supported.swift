@@ -5,8 +5,8 @@ extension HKCorrelationType {
 
     public static var readableTypes: [HKCorrelationContainer.Type] {
         [
-            BloodPressure.self,
-            Food.self,
+            //BloodPressure.self,
+            //Food.self,
         ]
     }
 
