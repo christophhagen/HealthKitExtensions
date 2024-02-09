@@ -28,9 +28,9 @@ extension InsulinDelivery {
         return .init(rawValue: value.intValue)
     }
 
-    public init(countsPerSecond: Double, reason: HKInsulinDeliveryReason, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+    public init(amount: Double, reason: HKInsulinDeliveryReason, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
         metadata[.insulinDeliveryReason] = NSNumber(value: reason.rawValue)
-        self.init(value: countsPerSecond, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
+        self.init(value: amount, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
     }
 }
