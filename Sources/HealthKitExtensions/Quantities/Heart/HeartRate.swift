@@ -37,13 +37,7 @@ public typealias HeartRate = HKQuantityValue<HeartRateSpecification>
 
 extension HeartRate {
 
-    public init(countsPerSecond: Double, motionContext: HKHeartRateMotionContext, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
-        var metadata = metadata ?? [:]
-        metadata[.heartRateMotionContext] = NSNumber(value: motionContext.rawValue)
-        self.init(value: countsPerSecond, start: start, end: end, device: device, metadata: metadata)
-    }
-
-    public init(countsPerSecond: Double, motionContext: HKHeartRateMotionContext, start: Date, end: Date, uuid: UUID, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+    public init(countsPerSecond: Double, motionContext: HKHeartRateMotionContext, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
         metadata[.heartRateMotionContext] = NSNumber(value: motionContext.rawValue)
         self.init(value: countsPerSecond, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
