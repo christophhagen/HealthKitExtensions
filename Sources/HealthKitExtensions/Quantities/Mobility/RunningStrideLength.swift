@@ -19,5 +19,5 @@ public struct RunningStrideLengthSpecification: HKQuantityTypeSpecification {
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningStrideLength = HKQuantityValue<RunningStrideLengthSpecification>
+public typealias RunningStrideLength = HKDiscreteQuantityValue<RunningStrideLengthSpecification>
 

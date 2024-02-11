@@ -20,4 +20,4 @@ public struct WaterTemperatureSpecification: HKQuantityTypeSpecification {
  The default unit is °C.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias WaterTemperature = HKQuantityValue<WaterTemperatureSpecification>
+public typealias WaterTemperature = HKDiscreteQuantityValue<WaterTemperatureSpecification>

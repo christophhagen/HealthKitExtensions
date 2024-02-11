@@ -16,4 +16,4 @@ public struct WaistCircumferenceSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias WaistCircumference = HKQuantityValue<WaistCircumferenceSpecification>
+public typealias WaistCircumference = HKDiscreteQuantityValue<WaistCircumferenceSpecification>

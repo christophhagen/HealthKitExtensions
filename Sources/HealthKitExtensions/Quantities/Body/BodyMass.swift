@@ -16,4 +16,4 @@ public struct BodyMassSpecification: HKQuantityTypeSpecification {
  
  The default unit is kilograms.
  */
-public typealias BodyMass = HKQuantityValue<BodyMassSpecification>
+public typealias BodyMass = HKDiscreteQuantityValue<BodyMassSpecification>

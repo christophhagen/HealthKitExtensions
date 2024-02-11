@@ -16,4 +16,4 @@ public struct PeakExpiratoryFlowRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is L/min.
  */
-public typealias PeakExpiratoryFlowRate = HKQuantityValue<PeakExpiratoryFlowRateSpecification>
+public typealias PeakExpiratoryFlowRate = HKDiscreteQuantityValue<PeakExpiratoryFlowRateSpecification>

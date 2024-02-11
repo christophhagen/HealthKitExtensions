@@ -14,4 +14,4 @@ public struct CyclingPowerSpecification: HKQuantityTypeSpecification {
  The default unit is Watt.
  */
 @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-public typealias CyclingPower = HKQuantityValue<CyclingPowerSpecification>
+public typealias CyclingPower = HKDiscreteQuantityValue<CyclingPowerSpecification>

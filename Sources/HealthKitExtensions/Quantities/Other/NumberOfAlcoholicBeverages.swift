@@ -52,4 +52,4 @@ public struct NumberOfAlcoholicBeveragesSpecification: HKQuantityTypeSpecificati
  ```
  The default unit is counts.
  */
-public typealias NumberOfAlcoholicBeverages = HKQuantityValue<NumberOfAlcoholicBeveragesSpecification>
+public typealias NumberOfAlcoholicBeverages = HKCumulativeQuantityValue<NumberOfAlcoholicBeveragesSpecification>

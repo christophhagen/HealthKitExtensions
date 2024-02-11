@@ -16,7 +16,7 @@ public struct InsulinDeliverySpecification: HKQuantityTypeSpecification {
 
  The default unit is IU.
  */
-public typealias InsulinDelivery = HKQuantityValue<InsulinDeliverySpecification>
+public typealias InsulinDelivery = HKCumulativeQuantityValue<InsulinDeliverySpecification>
 
 extension InsulinDelivery {
 

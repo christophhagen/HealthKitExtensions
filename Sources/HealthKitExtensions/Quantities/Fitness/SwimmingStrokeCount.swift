@@ -16,4 +16,4 @@ public struct SwimmingStrokeCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias SwimmingStrokeCount = HKQuantityValue<SwimmingStrokeCountSpecification>
+public typealias SwimmingStrokeCount = HKCumulativeQuantityValue<SwimmingStrokeCountSpecification>

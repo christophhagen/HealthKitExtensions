@@ -25,4 +25,4 @@ public struct RestingHeartRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts per second.
  */
-public typealias RestingHeartRate = HKQuantityValue<RestingHeartRateSpecification>
+public typealias RestingHeartRate = HKDiscreteQuantityValue<RestingHeartRateSpecification>

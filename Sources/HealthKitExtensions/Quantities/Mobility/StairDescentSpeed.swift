@@ -29,5 +29,5 @@ public struct StairDescentSpeedSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter per second.
  */
-public typealias StairDescentSpeed = HKQuantityValue<StairDescentSpeedSpecification>
+public typealias StairDescentSpeed = HKDiscreteQuantityValue<StairDescentSpeedSpecification>
 

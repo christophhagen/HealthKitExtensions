@@ -31,5 +31,5 @@ public struct WalkingSpeedSpecification: HKQuantityTypeSpecification {
 
  The default unit is meters per seconds.
  */
-public typealias WalkingSpeed = HKQuantityValue<WalkingSpeedSpecification>
+public typealias WalkingSpeed = HKDiscreteQuantityValue<WalkingSpeedSpecification>
 

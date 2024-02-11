@@ -32,5 +32,5 @@ public struct WalkingDoubleSupportPercentageSpecification: HKQuantityTypeSpecifi
 
  The default unit is percent.
  */
-public typealias WalkingDoubleSupportPercentage = HKQuantityValue<WalkingDoubleSupportPercentageSpecification>
+public typealias WalkingDoubleSupportPercentage = HKDiscreteQuantityValue<WalkingDoubleSupportPercentageSpecification>
 

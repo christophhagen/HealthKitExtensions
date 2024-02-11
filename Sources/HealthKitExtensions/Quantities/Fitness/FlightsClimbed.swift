@@ -16,4 +16,4 @@ public struct FlightsClimbedSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias FlightsClimbed = HKQuantityValue<FlightsClimbedSpecification>
+public typealias FlightsClimbed = HKCumulativeQuantityValue<FlightsClimbedSpecification>

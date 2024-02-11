@@ -45,7 +45,7 @@ public struct Vo2MaxSpecification: HKQuantityTypeSpecification {
 
  The default unit is `ml/(kg*min)`
  */
-public typealias Vo2Max = HKQuantityValue<Vo2MaxSpecification>
+public typealias Vo2Max = HKDiscreteQuantityValue<Vo2MaxSpecification>
 
 extension Vo2Max {
 

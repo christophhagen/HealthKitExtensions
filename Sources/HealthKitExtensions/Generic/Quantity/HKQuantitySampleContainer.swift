@@ -38,4 +38,10 @@ extension HKQuantitySampleContainer {
     public var count: Int { quantitySample.count }
 
     public var quantitySampleType: HKQuantityType { Self.quantitySampleType }
+
+    /// The aggregation style for the quantity
+    public var aggregationStyle: HKQuantityAggregationStyle { quantitySampleType.aggregationStyle }
+
+    /// The aggregation style for the quantity
+    public static var aggregationStyle: HKQuantityAggregationStyle { quantitySampleType.aggregationStyle }
 }

@@ -14,4 +14,4 @@ public struct CyclingSpeedSpecification: HKQuantityTypeSpecification {
  The default unit is meter per second.
  */
 @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-public typealias CyclingSpeed = HKQuantityValue<CyclingSpeedSpecification>
+public typealias CyclingSpeed = HKDiscreteQuantityValue<CyclingSpeedSpecification>

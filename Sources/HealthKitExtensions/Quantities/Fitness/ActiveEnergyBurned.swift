@@ -20,4 +20,4 @@ public struct ActiveEnergyBurnedSpecification: HKQuantityTypeSpecification {
 
  The default unit is Joule.
  */
-public typealias ActiveEnergyBurned = HKQuantityValue<ActiveEnergyBurnedSpecification>
+public typealias ActiveEnergyBurned = HKCumulativeQuantityValue<ActiveEnergyBurnedSpecification>

@@ -19,5 +19,5 @@ public struct RunningGroundContactTimeSpecification: HKQuantityTypeSpecification
  The default unit is seconds.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningGroundContactTime = HKQuantityValue<RunningGroundContactTimeSpecification>
+public typealias RunningGroundContactTime = HKDiscreteQuantityValue<RunningGroundContactTimeSpecification>
 

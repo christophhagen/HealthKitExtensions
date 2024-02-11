@@ -32,4 +32,4 @@ public struct AppleWalkingSteadinessSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias AppleWalkingSteadiness = HKQuantityValue<AppleWalkingSteadinessSpecification>
+public typealias AppleWalkingSteadiness = HKDiscreteQuantityValue<AppleWalkingSteadinessSpecification>

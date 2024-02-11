@@ -33,7 +33,7 @@ public struct HeartRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts per second.
  */
-public typealias HeartRate = HKQuantityValue<HeartRateSpecification>
+public typealias HeartRate = HKDiscreteQuantityValue<HeartRateSpecification>
 
 extension HeartRate {
 

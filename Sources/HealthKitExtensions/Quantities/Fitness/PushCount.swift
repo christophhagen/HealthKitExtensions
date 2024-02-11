@@ -16,4 +16,4 @@ public struct PushCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias PushCount = HKQuantityValue<PushCountSpecification>
+public typealias PushCount = HKCumulativeQuantityValue<PushCountSpecification>

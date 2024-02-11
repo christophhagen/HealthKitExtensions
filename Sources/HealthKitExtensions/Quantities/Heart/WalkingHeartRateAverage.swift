@@ -25,4 +25,4 @@ public struct WalkingHeartRateAverageSpecification: HKQuantityTypeSpecification 
 
  The default unit is counts per second.
  */
-public typealias WalkingHeartRateAverage = HKQuantityValue<WalkingHeartRateAverageSpecification>
+public typealias WalkingHeartRateAverage = HKDiscreteQuantityValue<WalkingHeartRateAverageSpecification>

@@ -18,4 +18,4 @@ public struct HeartRateVariabilitySDNNSpecification: HKQuantityTypeSpecification
 
  The default unit is seconds.
  */
-public typealias HeartRateVariabilitySDNN = HKQuantityValue<HeartRateVariabilitySDNNSpecification>
+public typealias HeartRateVariabilitySDNN = HKDiscreteQuantityValue<HeartRateVariabilitySDNNSpecification>

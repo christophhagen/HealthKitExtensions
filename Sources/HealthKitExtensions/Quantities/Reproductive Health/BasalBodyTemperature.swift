@@ -17,4 +17,4 @@ public struct BasalBodyTemperatureSpecification: HKQuantityTypeSpecification {
 
  The default unit is °C.
  */
-public typealias BasalBodyTemperature = HKQuantityValue<BasalBodyTemperatureSpecification>
+public typealias BasalBodyTemperature = HKDiscreteQuantityValue<BasalBodyTemperatureSpecification>

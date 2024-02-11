@@ -16,4 +16,4 @@ public struct RespiratoryRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is count/s.
  */
-public typealias RespiratoryRate = HKQuantityValue<RespiratoryRateSpecification>
+public typealias RespiratoryRate = HKDiscreteQuantityValue<RespiratoryRateSpecification>

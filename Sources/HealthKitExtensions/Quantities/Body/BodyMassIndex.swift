@@ -16,4 +16,4 @@ public struct BodyMassIndexSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts.
  */
-public typealias BodyMassIndex = HKQuantityValue<BodyMassIndexSpecification>
+public typealias BodyMassIndex = HKDiscreteQuantityValue<BodyMassIndexSpecification>

@@ -16,4 +16,4 @@ public struct HeightSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias Height = HKQuantityValue<HeightSpecification>
+public typealias Height = HKDiscreteQuantityValue<HeightSpecification>

@@ -16,4 +16,4 @@ public struct ForcedVitalCapacitySpecification: HKQuantityTypeSpecification {
 
  The default unit is liter.
  */
-public typealias ForcedVitalCapacity = HKQuantityValue<ForcedVitalCapacitySpecification>
+public typealias ForcedVitalCapacity = HKDiscreteQuantityValue<ForcedVitalCapacitySpecification>

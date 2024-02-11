@@ -16,4 +16,4 @@ public struct BloodAlcoholContentSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias BloodAlcoholContent = HKQuantityValue<BloodAlcoholContentSpecification>
+public typealias BloodAlcoholContent = HKDiscreteQuantityValue<BloodAlcoholContentSpecification>

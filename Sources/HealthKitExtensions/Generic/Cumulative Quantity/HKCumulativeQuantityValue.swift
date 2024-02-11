@@ -1,24 +1,15 @@
 import Foundation
 import HealthKit
 
-/// A protocol adopted by dietary samples
-public protocol HKDietaryQuantitySampleContainer: HKQuantitySampleContainer {
-
-}
-
-/// - NOTE: The implementation of `HKDietaryQuantityValue` is identical to `HKQuantityValue`,
-/// except the conformance to the protocol `HKDietaryQuantitySampleContainer` instead of `HKQuantitySampleContainer`.
-/// This is done to restrict inputs to the `Food` correlation to dietary samples.
-
 /**
- A dietary quantity sample.
+ A cumulative quantity sample.
  */
-public struct HKDietaryQuantityValue<Identifier>: HKDietaryQuantitySampleContainer where Identifier: HKQuantityTypeSpecification {
+public struct HKCumulativeQuantityValue<Identifier>: HKCumulativeQuantitySampleContainer where Identifier: HKQuantityTypeSpecification {
 
-    public var quantitySample: HKQuantitySample
+    public var cumulativeQuantitySample: HKCumulativeQuantitySample
 
-    public init(quantitySample: HKQuantitySample) {
-        self.quantitySample = quantitySample
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
     }
 
     public static var quantitySampleType: HKQuantityType { .init(Identifier.identifier) }
@@ -42,7 +33,7 @@ public struct HKDietaryQuantityValue<Identifier>: HKDietaryQuantitySampleContain
      Create a sample from a value in the default unit.
      */
     public init(value: Double, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
-        self.init(quantitySample: .init(
+        self.init(cumulativeQuantitySample: .init(
             type: .init(Identifier.identifier),
             quantity: .init(unit: Identifier.defaultUnit, doubleValue: value),
             start: start,

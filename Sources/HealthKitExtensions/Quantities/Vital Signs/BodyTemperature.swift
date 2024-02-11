@@ -16,4 +16,4 @@ public struct BodyTemperatureSpecification: HKQuantityTypeSpecification {
 
  The default unit is °C.
  */
-public typealias BodyTemperature = HKQuantityValue<BodyTemperatureSpecification>
+public typealias BodyTemperature = HKDiscreteQuantityValue<BodyTemperatureSpecification>

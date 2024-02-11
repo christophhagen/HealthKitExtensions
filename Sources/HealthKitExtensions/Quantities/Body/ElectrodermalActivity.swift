@@ -18,4 +18,4 @@ public struct ElectrodermalActivitySpecification: HKQuantityTypeSpecification {
 
  The default unit is microsiemens.
  */
-public typealias ElectrodermalActivity = HKQuantityValue<ElectrodermalActivitySpecification>
+public typealias ElectrodermalActivity = HKDiscreteQuantityValue<ElectrodermalActivitySpecification>

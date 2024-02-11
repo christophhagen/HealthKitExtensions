@@ -15,4 +15,4 @@ public struct TimeInDaylightSpecification: HKQuantityTypeSpecification {
  The default unit is minute.
  */
 @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-public typealias TimeInDaylight = HKQuantityValue<TimeInDaylightSpecification>
+public typealias TimeInDaylight = HKCumulativeQuantityValue<TimeInDaylightSpecification>

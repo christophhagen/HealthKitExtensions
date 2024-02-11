@@ -19,5 +19,5 @@ public struct RunningVerticalOscillationSpecification: HKQuantityTypeSpecificati
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningVerticalOscillation = HKQuantityValue<RunningVerticalOscillationSpecification>
+public typealias RunningVerticalOscillation = HKDiscreteQuantityValue<RunningVerticalOscillationSpecification>
 

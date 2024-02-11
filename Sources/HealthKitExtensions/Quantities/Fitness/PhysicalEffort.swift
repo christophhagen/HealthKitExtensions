@@ -18,4 +18,4 @@ public struct PhysicalEffortSpecification: HKQuantityTypeSpecification {
  The default unit is `kcal/(kg*hr)`.
  */
 @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-public typealias PhysicalEffort = HKQuantityValue<PhysicalEffortSpecification>
+public typealias PhysicalEffort = HKDiscreteQuantityValue<PhysicalEffortSpecification>

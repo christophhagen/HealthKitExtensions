@@ -16,4 +16,4 @@ public struct NikeFuelSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias NikeFuel = HKQuantityValue<NikeFuelSpecification>
+public typealias NikeFuel = HKCumulativeQuantityValue<NikeFuelSpecification>

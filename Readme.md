@@ -70,6 +70,23 @@ let value = BodyFatPercentage(quantity: quantity, start: .now, end: .now)
 
 When only the value is provided, then it is interpreted in the `defaultUnit` for the type.
 
+#### Cumulative and discrete samples
+
+Depending on the quantity, there are different properties exposed for samples that are either `cumulative` or `discrete`.
+Cumulative samples have an `aggregationStyle == .cumulative` and provide the `sumQuantity` property.
+
+```swift
+let sample = ActiveEnergyBurned(...)
+let sum = sample.sumQuantity
+```
+
+Discrete samples have `aggregationStyle` values of `.discreteArithmetic`, `.discreteTemporallyWeighted`, or `.discreteEquivalentContinuousLevel` and expose the properties `averageQuantity`, `maximumQuantity`, `minimumQuantity`, `mostRecentQuantity`, and `mostRecentQuantityDateInterval`.
+
+```swift
+let sample = CyclingPower(...)
+let max = sample.maximumQuantity
+```
+
 #### Custom UUIDs
 
 It's possible to assign custom UUIDs directly in the constructor:
@@ -91,7 +108,6 @@ var metadata = Metadata() // typealias for [String : Any]
 metadata[.menstrualCycleStart] = true // Sets HKMetadataKeyMenstrualCycleStart
 let cycleStart: Bool = metadata[.menstrualCycleStart]
 ```
-
 
 ### Requesting permissions
 

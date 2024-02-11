@@ -16,4 +16,4 @@ public struct ForcedExpiratoryVolume1Specification: HKQuantityTypeSpecification 
 
  The default unit is liter.
  */
-public typealias ForcedExpiratoryVolume1 = HKQuantityValue<ForcedExpiratoryVolume1Specification>
+public typealias ForcedExpiratoryVolume1 = HKDiscreteQuantityValue<ForcedExpiratoryVolume1Specification>

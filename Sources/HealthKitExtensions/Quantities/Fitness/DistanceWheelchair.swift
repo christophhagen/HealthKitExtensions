@@ -16,4 +16,4 @@ public struct DistanceWheelchairSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias DistanceWheelchair = HKQuantityValue<DistanceWheelchairSpecification>
+public typealias DistanceWheelchair = HKCumulativeQuantityValue<DistanceWheelchairSpecification>

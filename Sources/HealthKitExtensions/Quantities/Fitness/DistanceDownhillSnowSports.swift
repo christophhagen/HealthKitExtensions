@@ -16,4 +16,4 @@ public struct DistanceDownhillSnowSportsSpecification: HKQuantityTypeSpecificati
 
  The default unit is meter.
  */
-public typealias DistanceDownhillSnowSports = HKQuantityValue<DistanceDownhillSnowSportsSpecification>
+public typealias DistanceDownhillSnowSports = HKCumulativeQuantityValue<DistanceDownhillSnowSportsSpecification>

@@ -18,4 +18,4 @@ public struct BasalEnergyBurnedSpecification: HKQuantityTypeSpecification {
 
  The default unit is Joule.
  */
-public typealias BasalEnergyBurned = HKQuantityValue<BasalEnergyBurnedSpecification>
+public typealias BasalEnergyBurned = HKCumulativeQuantityValue<BasalEnergyBurnedSpecification>

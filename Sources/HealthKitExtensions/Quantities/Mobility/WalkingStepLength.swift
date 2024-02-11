@@ -28,5 +28,5 @@ public struct WalkingStepLengthSpecification: HKQuantityTypeSpecification {
  
  The default unit is meters.
  */
-public typealias WalkingStepLength = HKQuantityValue<WalkingStepLengthSpecification>
+public typealias WalkingStepLength = HKDiscreteQuantityValue<WalkingStepLengthSpecification>
 

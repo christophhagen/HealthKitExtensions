@@ -25,4 +25,4 @@ public struct BloodGlucoseSpecification: HKQuantityTypeSpecification {
 
  The default unit is mg/dL.
  */
-public typealias BloodGlucose = HKQuantityValue<BloodGlucoseSpecification>
+public typealias BloodGlucose = HKDiscreteQuantityValue<BloodGlucoseSpecification>

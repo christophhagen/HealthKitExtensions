@@ -16,4 +16,4 @@ public struct BodyFatPercentageSpecification: HKQuantityTypeSpecification {
  
  The default unit is percent.
  */
-public typealias BodyFatPercentage = HKQuantityValue<BodyFatPercentageSpecification>
+public typealias BodyFatPercentage = HKDiscreteQuantityValue<BodyFatPercentageSpecification>

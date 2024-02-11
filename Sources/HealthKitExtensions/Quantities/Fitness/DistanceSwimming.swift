@@ -16,4 +16,4 @@ public struct DistanceSwimmingSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias DistanceSwimming = HKQuantityValue<DistanceSwimmingSpecification>
+public typealias DistanceSwimming = HKCumulativeQuantityValue<DistanceSwimmingSpecification>

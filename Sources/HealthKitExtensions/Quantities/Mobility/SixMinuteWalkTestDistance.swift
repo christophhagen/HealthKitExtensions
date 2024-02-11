@@ -43,7 +43,7 @@ public struct SixMinuteWalkTestDistanceSpecification: HKQuantityTypeSpecificatio
 
  The default unit is meter.
  */
-public typealias SixMinuteWalkTestDistance = HKQuantityValue<SixMinuteWalkTestDistanceSpecification>
+public typealias SixMinuteWalkTestDistance = HKDiscreteQuantityValue<SixMinuteWalkTestDistanceSpecification>
 
 extension SixMinuteWalkTestDistance {
 

@@ -17,4 +17,4 @@ public struct OxygenSaturationSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias OxygenSaturation = HKQuantityValue<OxygenSaturationSpecification>
+public typealias OxygenSaturation = HKDiscreteQuantityValue<OxygenSaturationSpecification>

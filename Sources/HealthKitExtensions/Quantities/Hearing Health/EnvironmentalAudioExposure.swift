@@ -18,4 +18,4 @@ public struct EnvironmentalAudioExposureSpecification: HKQuantityTypeSpecificati
 
  The default unit is dBASPL (see``decibelAWeightedSoundPressureLevel()``).
  */
-public typealias EnvironmentalAudioExposure = HKQuantityValue<EnvironmentalAudioExposureSpecification>
+public typealias EnvironmentalAudioExposure = HKDiscreteQuantityValue<EnvironmentalAudioExposureSpecification>

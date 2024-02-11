@@ -28,4 +28,4 @@ public struct AtrialFibrillationBurdenSpecification: HKQuantityTypeSpecification
  The default unit is percent.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias AtrialFibrillationBurden = HKQuantityValue<AtrialFibrillationBurdenSpecification>
+public typealias AtrialFibrillationBurden = HKDiscreteQuantityValue<AtrialFibrillationBurdenSpecification>

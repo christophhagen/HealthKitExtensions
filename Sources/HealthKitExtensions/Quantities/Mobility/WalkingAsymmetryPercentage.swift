@@ -28,7 +28,7 @@ public struct WalkingAsymmetryPercentageSpecification: HKQuantityTypeSpecificati
 
  The default unit is percent.
  */
-public typealias WalkingAsymmetryPercentage = HKQuantityValue<WalkingAsymmetryPercentageSpecification>
+public typealias WalkingAsymmetryPercentage = HKDiscreteQuantityValue<WalkingAsymmetryPercentageSpecification>
 
 extension WalkingAsymmetryPercentage {
 

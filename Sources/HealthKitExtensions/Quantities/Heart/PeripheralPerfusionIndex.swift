@@ -17,4 +17,4 @@ public struct PeripheralPerfusionIndexSpecification: HKQuantityTypeSpecification
 
  The default unit is percent.
  */
-public typealias PeripheralPerfusionIndex = HKQuantityValue<PeripheralPerfusionIndexSpecification>
+public typealias PeripheralPerfusionIndex = HKDiscreteQuantityValue<PeripheralPerfusionIndexSpecification>

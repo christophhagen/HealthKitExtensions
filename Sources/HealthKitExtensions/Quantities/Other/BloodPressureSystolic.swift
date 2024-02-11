@@ -17,4 +17,4 @@ public struct BloodPressureSystolicSpecification: HKQuantityTypeSpecification {
 
  The default unit is mmHg.
  */
-public typealias BloodPressureSystolic = HKQuantityValue<BloodPressureSystolicSpecification>
+public typealias BloodPressureSystolic = HKDiscreteQuantityValue<BloodPressureSystolicSpecification>

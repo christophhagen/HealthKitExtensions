@@ -2,14 +2,14 @@ import Foundation
 import HealthKit
 
 /**
- A quantity sample.
+ A discrete quantity sample.
  */
-public struct HKQuantityValue<Identifier>: HKQuantitySampleContainer where Identifier: HKQuantityTypeSpecification {
+public struct HKDiscreteQuantityValue<Identifier>: HKDiscreteQuantitySampleContainer where Identifier: HKQuantityTypeSpecification {
 
-    public var quantitySample: HKQuantitySample
+    public var discreteQuantitySample: HKDiscreteQuantitySample
 
-    public init(quantitySample: HKQuantitySample) {
-        self.quantitySample = quantitySample
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
     }
 
     public static var quantitySampleType: HKQuantityType { .init(Identifier.identifier) }
@@ -33,8 +33,8 @@ public struct HKQuantityValue<Identifier>: HKQuantitySampleContainer where Ident
      Create a sample from a value in the default unit.
      */
     public init(value: Double, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
-        self.init(quantitySample: .init(
-            type: .init(Identifier.identifier), 
+        self.init(discreteQuantitySample: .init(
+            type: .init(Identifier.identifier),
             quantity: .init(unit: Identifier.defaultUnit, doubleValue: value),
             start: start,
             end: end,

@@ -39,4 +39,4 @@ public struct NumberOfTimesFallenSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts.
  */
-public typealias NumberOfTimesFallen = HKQuantityValue<NumberOfTimesFallenSpecification>
+public typealias NumberOfTimesFallen = HKCumulativeQuantityValue<NumberOfTimesFallenSpecification>

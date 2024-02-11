@@ -14,4 +14,4 @@ public struct EnvironmentalSoundReductionSpecification: HKQuantityTypeSpecificat
  The default unit is dBASPL (see``decibelAWeightedSoundPressureLevel()``).
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias EnvironmentalSoundReduction = HKQuantityValue<EnvironmentalSoundReductionSpecification>
+public typealias EnvironmentalSoundReduction = HKDiscreteQuantityValue<EnvironmentalSoundReductionSpecification>

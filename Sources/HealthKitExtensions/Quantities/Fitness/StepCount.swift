@@ -16,4 +16,4 @@ public struct StepCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias StepCount = HKQuantityValue<StepCountSpecification>
+public typealias StepCount = HKCumulativeQuantityValue<StepCountSpecification>

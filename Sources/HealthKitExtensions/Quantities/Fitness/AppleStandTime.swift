@@ -16,4 +16,4 @@ public struct AppleStandTimeSpecification: HKQuantityTypeSpecification {
 
  The default unit is seconds.
  */
-public typealias AppleStandTime = HKQuantityValue<AppleStandTimeSpecification>
+public typealias AppleStandTime = HKCumulativeQuantityValue<AppleStandTimeSpecification>

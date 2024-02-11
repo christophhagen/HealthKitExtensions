@@ -19,4 +19,4 @@ public struct HeartRateRecoveryOneMinuteSpecification: HKQuantityTypeSpecificati
  The default unit is counts/minute.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias HeartRateRecoveryOneMinute = HKQuantityValue<HeartRateRecoveryOneMinuteSpecification>
+public typealias HeartRateRecoveryOneMinute = HKDiscreteQuantityValue<HeartRateRecoveryOneMinuteSpecification>

@@ -16,4 +16,4 @@ public struct CyclingCadenceSpecification: HKQuantityTypeSpecification {
  The default unit is revolutions per minute.
  */
 @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-public typealias CyclingCadence = HKQuantityValue<CyclingCadenceSpecification>
+public typealias CyclingCadence = HKDiscreteQuantityValue<CyclingCadenceSpecification>

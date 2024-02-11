@@ -17,4 +17,4 @@ public struct UvExposureSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias UvExposure = HKQuantityValue<UvExposureSpecification>
+public typealias UvExposure = HKDiscreteQuantityValue<UvExposureSpecification>

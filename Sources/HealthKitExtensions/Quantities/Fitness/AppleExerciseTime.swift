@@ -24,4 +24,4 @@ public struct AppleExerciseTimeSpecification: HKQuantityTypeSpecification {
 
  The default unit is seconds.
  */
-public typealias AppleExerciseTime = HKQuantityValue<AppleExerciseTimeSpecification>
+public typealias AppleExerciseTime = HKCumulativeQuantityValue<AppleExerciseTimeSpecification>

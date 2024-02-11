@@ -16,4 +16,4 @@ public struct LeanBodyMassSpecification: HKQuantityTypeSpecification {
 
  The default unit is kilograms.
  */
-public typealias LeanBodyMass = HKQuantityValue<LeanBodyMassSpecification>
+public typealias LeanBodyMass = HKDiscreteQuantityValue<LeanBodyMassSpecification>

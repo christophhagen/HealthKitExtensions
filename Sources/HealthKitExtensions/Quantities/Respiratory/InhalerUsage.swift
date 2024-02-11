@@ -16,4 +16,4 @@ public struct InhalerUsageSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias InhalerUsage = HKQuantityValue<InhalerUsageSpecification>
+public typealias InhalerUsage = HKCumulativeQuantityValue<InhalerUsageSpecification>

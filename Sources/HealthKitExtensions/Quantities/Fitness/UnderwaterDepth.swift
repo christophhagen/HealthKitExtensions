@@ -20,4 +20,4 @@ public struct UnderwaterDepthSpecification: HKQuantityTypeSpecification {
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias UnderwaterDepth = HKQuantityValue<UnderwaterDepthSpecification>
+public typealias UnderwaterDepth = HKCumulativeQuantityValue<UnderwaterDepthSpecification>
