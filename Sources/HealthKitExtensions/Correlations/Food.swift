@@ -6,12 +6,17 @@ import HealthKit
  
  When creating food samples, specify the type of food using the ``HKMetadataKeyFoodType`` metadata key.
  */
-public struct FoodIdentifier: HKCorrelationTypeIdentifierProvider {
+public struct Food: HKCorrelationContainer {
 
-    public static let identifier: HKCorrelationTypeIdentifier = .food
+    public static let correlationType: HKCorrelationTypeIdentifier = .food
+
+    public let correlation: HKCorrelation
+
+    public init(correlation: HKCorrelation) {
+        self.correlation = correlation
+    }
 }
 
-public typealias Food = HKCorrelationSample<FoodIdentifier>
 
 extension Food {
 

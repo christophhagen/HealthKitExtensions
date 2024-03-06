@@ -4,12 +4,16 @@ import HealthKit
 /**
  A correlation sample that combines a systolic sample and a diastolic sample into a single blood pressure reading.
  */
-public struct BloodPressureIdentifier: HKCorrelationTypeIdentifierProvider {
+public struct BloodPressure: HKCorrelationContainer {
 
-    public static let identifier: HKCorrelationTypeIdentifier = .bloodPressure
+    public static let correlationType: HKCorrelationTypeIdentifier = .bloodPressure
+
+    public let correlation: HKCorrelation
+
+    public init(correlation: HKCorrelation) {
+        self.correlation = correlation
+    }
 }
-
-public typealias BloodPressure = HKCorrelationSample<BloodPressureIdentifier>
 
 extension BloodPressure {
 
