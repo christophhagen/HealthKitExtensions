@@ -10,4 +10,13 @@ public struct LactationIdentifier: HKCategoryTypeIdentifierProvider {
  
  Use a ``HKCategoryValue.notApplicable`` value with samples of this type.
  */
-public typealias Lactation = HKCategoryEmptySample<LactationIdentifier>
+public struct Lactation: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .lactation
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

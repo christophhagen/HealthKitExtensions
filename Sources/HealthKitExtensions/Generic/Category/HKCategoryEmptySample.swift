@@ -6,15 +6,16 @@ import HealthKit
 
  Used for all sample types where the value should be ``HKCategoryValue.notApplicable``.
  */
-public struct HKCategoryEmptySample<Identifier>: HKCategorySampleContainer where Identifier: HKCategoryTypeIdentifierProvider {
+public protocol HKCategoryEmptySample: HKCategorySampleContainer {
 
-    public var categorySample: HKCategorySample
+    static var categoryTypeIdentifier: HKCategoryTypeIdentifier { get }
 
-    public init(categorySample: HKCategorySample) {
-        self.categorySample = categorySample
-    }
+    var categorySample: HKCategorySample { get }
 
-    public static var categoryTypeIdentifier: HKCategoryTypeIdentifier { Identifier.identifier }
+    init(categorySample: HKCategorySample)
+}
+
+extension HKCategoryEmptySample {
 
     /**
      Create an empty sample without a value.
@@ -23,7 +24,7 @@ public struct HKCategoryEmptySample<Identifier>: HKCategorySampleContainer where
      */
     public init(start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         self.init(categorySample: .init(
-            type: .init(Identifier.identifier),
+            type: .init(Self.categoryTypeIdentifier),
             value: HKCategoryValue.notApplicable.rawValue,
             start: start,
             end: end,

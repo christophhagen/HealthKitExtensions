@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct HandwashingEventIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .handwashingEvent
-}
-
 /**
  A category sample type for handwashing events.
  
@@ -14,4 +10,13 @@ public struct HandwashingEventIdentifier: HKCategoryTypeIdentifierProvider {
 
  Apple Watch automatically detects and records handwashing events on Apple Watch Series 4 and later.
  */
-public typealias HandwashingEvent = HKCategoryEmptySample<HandwashingEventIdentifier>
+public struct HandwashingEvent: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .handwashingEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

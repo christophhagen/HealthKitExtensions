@@ -1,11 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct PersistentIntermenstrualBleedingIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .persistentIntermenstrualBleeding
-}
-
 /**
  A category sample that indicates persistent intermenstrual bleeding.
 
@@ -36,4 +31,13 @@ public struct PersistentIntermenstrualBleedingIdentifier: HKCategoryTypeIdentifi
  - Important These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new persistent intermenstrual bleeding samples to the HealthKit store.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias PersistentIntermenstrualBleeding = HKCategoryEmptySample<PersistentIntermenstrualBleedingIdentifier>
+public struct PersistentIntermenstrualBleeding: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .persistentIntermenstrualBleeding
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

@@ -1,19 +1,21 @@
 import Foundation
 import HealthKit
 
-public struct SexualActivityIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .sexualActivity
-}
-
 /**
  A category sample type that records sexual activity.
  
  Use a ``HKCategoryValue.notApplicable`` value with these samples.
  These samples can include ``HKMetadataKeySexualActivityProtectionUsed`` metadata.
  */
-public typealias SexualActivity = HKCategoryEmptySample<SexualActivityIdentifier>
+public struct SexualActivity: HKCategoryEmptySample {
 
-extension SexualActivity {
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .sexualActivity
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
 
     /**
     Indicates if protection was used during sexual activity

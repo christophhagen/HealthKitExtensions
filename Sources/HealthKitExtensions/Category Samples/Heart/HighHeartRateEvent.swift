@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct HighHeartRateEventIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .highHeartRateEvent
-}
-
 /**
  A category sample type for high heart rate events.
 
@@ -18,9 +14,11 @@ public struct HighHeartRateEventIdentifier: HKCategoryTypeIdentifierProvider {
 
  These samples have a value of ``HKCategoryValue.notApplicable`` and include ``HKMetadataKeyHeartRateEventThreshold`` metadata.
  */
-public typealias HighHeartRateEvent = HKCategoryEmptySample<HighHeartRateEventIdentifier>
+public struct HighHeartRateEvent: HKCategoryEmptySample {
+    
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .highHeartRateEvent
 
-extension HighHeartRateEvent {
+    public let categorySample: HKCategorySample
 
     /// The threshold for the heart rate event (in beats per minute)
     public var heartRateEventThresholdBpm: Double? {
@@ -30,6 +28,10 @@ extension HighHeartRateEvent {
     /// The threshold for the heart rate event (counts/time)
     public var heartRateEventThreshold: HKQuantity? {
         metadata?.heartRateEventThreshold
+    }
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
     }
 
     /**

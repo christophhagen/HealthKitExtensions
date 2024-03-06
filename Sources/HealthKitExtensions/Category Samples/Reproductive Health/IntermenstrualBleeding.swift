@@ -1,13 +1,18 @@
 import Foundation
 import HealthKit
 
-public struct IntermenstrualBleedingIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .intermenstrualBleeding
-}
-
 /**
  A category sample type that records spotting outside the normal menstruation period.
  
  Use a ``HKCategoryValue.notApplicable`` value with these samples.
  */
-public typealias IntermenstrualBleeding = HKCategoryEmptySample<IntermenstrualBleedingIdentifier>
+public struct IntermenstrualBleeding: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .intermenstrualBleeding
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

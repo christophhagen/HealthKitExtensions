@@ -1,13 +1,18 @@
 import Foundation
 import HealthKit
 
-public struct PregnancyIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .pregnancy
-}
-
 /**
  A category type that records pregnancy.
  
  Use a ``HKCategoryValue.notApplicable`` value with samples of this type.
  */
-public typealias Pregnancy = HKCategoryEmptySample<PregnancyIdentifier>
+public struct Pregnancy: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .pregnancy
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

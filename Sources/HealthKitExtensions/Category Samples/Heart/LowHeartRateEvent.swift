@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct LowHeartRateEventIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .lowHeartRateEvent
-}
-
 /**
  The system creates `lowHeartRateEvent` samples whenever Apple Watch produces a low heart rate notification.
 
@@ -16,9 +12,15 @@ public struct LowHeartRateEventIdentifier: HKCategoryTypeIdentifierProvider {
  To add test data in iOS Simulator, open the Health app and select Browse > Heart > Low Heart Rate Notifications > Add Data.
  These samples have a value of ``HKCategoryValue.notApplicable`` and include ``HKMetadataKeyHeartRateEventThreshold`` metadata.
  */
-public typealias LowHeartRateEvent = HKCategoryEmptySample<LowHeartRateEventIdentifier>
+public struct LowHeartRateEvent: HKCategoryEmptySample {
 
-extension LowHeartRateEvent {
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .lowHeartRateEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
 
     /// The threshold for the heart rate event (in beats per minute)
     public var heartRateEventThresholdBpm: Double? {

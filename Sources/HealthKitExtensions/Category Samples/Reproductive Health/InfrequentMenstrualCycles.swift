@@ -1,11 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct InfrequentMenstrualCyclesIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .infrequentMenstrualCycles
-}
-
 /**
  A category sample that indicates an infrequent menstrual cycle.
 
@@ -36,4 +31,13 @@ public struct InfrequentMenstrualCyclesIdentifier: HKCategoryTypeIdentifierProvi
  - Important These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new infrequent menstrual cycle samples to the HealthKit store.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias InfrequentMenstrualCycles = HKCategoryEmptySample<InfrequentMenstrualCyclesIdentifier>
+public struct InfrequentMenstrualCycles: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .infrequentMenstrualCycles
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct IrregularHeartRhythmEventIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .irregularHeartRhythmEvent
-}
-
 /**
  A category sample type for irregular heart rhythm events.
 
@@ -18,4 +14,13 @@ public struct IrregularHeartRhythmEventIdentifier: HKCategoryTypeIdentifierProvi
 
  These samples have a value of ``HKCategoryValue.notApplicable``.
  */
-public typealias IrregularHeartRhythmEvent = HKCategoryEmptySample<IrregularHeartRhythmEventIdentifier>
+public struct IrregularHeartRhythmEvent: HKCategoryEmptySample {
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .irregularHeartRhythmEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
