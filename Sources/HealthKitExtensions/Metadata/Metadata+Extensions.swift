@@ -31,7 +31,7 @@ extension Metadata {
     }
 
     mutating func set(quantity: HKQuantity?, for key: MetadataKey) {
-        self[key.rawValue] = value
+        self[key.rawValue] = quantity
     }
 
     func excluding(key: MetadataKey) -> [String : Any] {
