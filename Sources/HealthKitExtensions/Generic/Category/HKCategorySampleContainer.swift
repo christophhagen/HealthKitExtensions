@@ -7,7 +7,7 @@ public protocol HKCategorySampleContainer: HKSampleContainer {
 
     init(categorySample: HKCategorySample)
 
-    static var categorySampleType: HKCategoryType { get }
+    static var categoryTypeIdentifier: HKCategoryTypeIdentifier { get }
 }
 
 extension HKCategorySampleContainer {
@@ -17,6 +17,8 @@ extension HKCategorySampleContainer {
     public init(sample: HKSample) {
         self.init(categorySample: sample as! HKCategorySample)
     }
+
+    public static var categorySampleType: HKCategoryType { .init(categoryTypeIdentifier) }
 
     public static var sampleType: HKSampleType { categorySampleType }
 

@@ -14,7 +14,7 @@ public struct HKCategoryEmptySample<Identifier>: HKCategorySampleContainer where
         self.categorySample = categorySample
     }
 
-    public static var categorySampleType: HKCategoryType { .init(Identifier.identifier) }
+    public static var categoryTypeIdentifier: HKCategoryTypeIdentifier { Identifier.identifier }
 
     /**
      Create an empty sample without a value.

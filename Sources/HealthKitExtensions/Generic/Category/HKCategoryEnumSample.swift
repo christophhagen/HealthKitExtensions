@@ -13,7 +13,7 @@ public struct HKCategoryGenericEnumSample<Identifier, Value>: HKCategorySampleCo
         self.categorySample = categorySample
     }
 
-    public static var categorySampleType: HKCategoryType { .init(Identifier.identifier) }
+    public static var categoryTypeIdentifier: HKCategoryTypeIdentifier { Identifier.identifier }
 
     /**
      Create an enum sample.
