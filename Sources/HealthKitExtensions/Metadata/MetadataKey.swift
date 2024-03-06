@@ -6,7 +6,7 @@ public enum MetadataKey {
     /**
      A unique identifier for an HKObject that is set by its source.
      
-     This key takes a string value.
+     This key takes a ``String`` value.
      This value is independent of the UUID assigned to the object by the HealthKit store.
      You can assign your own UUID to any HealthKit objects you create.
      Use these IDs to uniquely identify objects in your application.
@@ -83,7 +83,7 @@ public enum MetadataKey {
     /**
      The method used to calculate the user’s VO2 max rate.
 
-     This key takes an `NSNumber` object containing a ``HKVO2MaxTestType`` value.
+     This key takes an ``NSNumber`` object containing a ``HKVO2MaxTestType`` value.
      */
     case vO2MaxTestType
 
