@@ -8,12 +8,6 @@ import HealthKit
 public protocol HKCategoryEnumSample: HKCategorySampleContainer {
 
     associatedtype Value: RawRepresentable where Value.RawValue == Int
-
-    var categorySample: HKCategorySample { get }
-
-    init(categorySample: HKCategorySample)
-
-    static var categoryTypeIdentifier: HKCategoryTypeIdentifier { get }
 }
 
 extension HKCategoryEnumSample {

@@ -7,12 +7,7 @@ import HealthKit
  Used for all sample types where the value should be ``HKCategoryValue.notApplicable``.
  */
 public protocol HKCategoryEmptySample: HKCategorySampleContainer {
-
-    static var categoryTypeIdentifier: HKCategoryTypeIdentifier { get }
-
-    var categorySample: HKCategorySample { get }
-
-    init(categorySample: HKCategorySample)
+    
 }
 
 extension HKCategoryEmptySample {
