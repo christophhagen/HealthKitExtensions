@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct HeightSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .height
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the user’s height.
  
@@ -16,4 +8,16 @@ public struct HeightSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias Height = HKDiscreteQuantityValue<HeightSpecification>
+public struct Height: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .height
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

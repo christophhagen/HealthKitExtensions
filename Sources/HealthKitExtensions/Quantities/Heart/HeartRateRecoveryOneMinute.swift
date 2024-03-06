@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct HeartRateRecoveryOneMinuteSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .heartRateRecoveryOneMinute
-
-    /// counts per minute
-    public static let defaultUnit: HKUnit = .count().unitDivided(by: .minute())
-}
-
 /**
  A quantity sample that records the reduction in heart rate from the peak exercise rate to the rate one minute after exercising ended.
  
@@ -19,4 +10,16 @@ public struct HeartRateRecoveryOneMinuteSpecification: HKQuantityTypeSpecificati
  The default unit is counts/minute.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias HeartRateRecoveryOneMinute = HKDiscreteQuantityValue<HeartRateRecoveryOneMinuteSpecification>
+public struct HeartRateRecoveryOneMinute: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .heartRateRecoveryOneMinute
+
+    /// counts per minute
+    public static let defaultUnit: HKUnit = .count().unitDivided(by: .minute())
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

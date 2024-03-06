@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct RunningGroundContactTimeSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .runningGroundContactTime
-
-    /// seconds
-    public static let defaultUnit: HKUnit = .second()
-}
-
 /**
  A quantity sample type that measures the amount of time the runner’s foot is in contact with the ground while running.
 
@@ -19,5 +10,17 @@ public struct RunningGroundContactTimeSpecification: HKQuantityTypeSpecification
  The default unit is seconds.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningGroundContactTime = HKDiscreteQuantityValue<RunningGroundContactTimeSpecification>
+public struct RunningGroundContactTime: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .runningGroundContactTime
+
+    /// seconds
+    public static let defaultUnit: HKUnit = .second()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
 

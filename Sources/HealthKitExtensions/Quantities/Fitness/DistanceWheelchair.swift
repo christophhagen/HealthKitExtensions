@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DistanceWheelchairSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .distanceWheelchair
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the distance the user has moved using a wheelchair.
 
@@ -16,4 +8,13 @@ public struct DistanceWheelchairSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias DistanceWheelchair = HKCumulativeQuantityValue<DistanceWheelchairSpecification>
+public struct DistanceWheelchair: HKCumulativeDistance {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .distanceWheelchair
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

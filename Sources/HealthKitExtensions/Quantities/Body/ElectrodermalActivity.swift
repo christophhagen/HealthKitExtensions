@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct ElectrodermalActivitySpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .electrodermalActivity
-
-    /// microsiemens
-    public static let defaultUnit: HKUnit = .siemenUnit(with: .micro)
-}
-
 /**
  A quantity sample type that measures electrodermal activity.
 
@@ -18,4 +10,16 @@ public struct ElectrodermalActivitySpecification: HKQuantityTypeSpecification {
 
  The default unit is microsiemens.
  */
-public typealias ElectrodermalActivity = HKDiscreteQuantityValue<ElectrodermalActivitySpecification>
+public struct ElectrodermalActivity: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .electrodermalActivity
+
+    /// microsiemens
+    public static let defaultUnit: HKUnit = .siemenUnit(with: .micro)
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

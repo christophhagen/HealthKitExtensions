@@ -1,7 +1,10 @@
 import Foundation
 import HealthKit
 
-public protocol HKDiscreteQuantitySampleContainer: HKQuantitySampleContainer {
+/**
+ A discrete quantity sample.
+ */
+public protocol HKDiscreteQuantity: HKQuantitySampleContainer {
 
     var discreteQuantitySample: HKDiscreteQuantitySample { get }
 
@@ -9,7 +12,7 @@ public protocol HKDiscreteQuantitySampleContainer: HKQuantitySampleContainer {
 
 }
 
-extension HKDiscreteQuantitySampleContainer {
+extension HKDiscreteQuantity {
 
     public var quantitySample: HKQuantitySample { discreteQuantitySample }
 
@@ -32,4 +35,23 @@ extension HKDiscreteQuantitySampleContainer {
     /// The date interval for the most recent quantity contained by the sample.
     public var mostRecentQuantityDateInterval: DateInterval { discreteQuantitySample.mostRecentQuantityDateInterval }
 
+    /**
+     Create a sample from a value in the default unit.
+     */
+    public init(value: Double, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+        self.init(discreteQuantitySample: .init(
+            type: Self.quantitySampleType,
+            quantity: .init(unit: Self.defaultUnit, doubleValue: value),
+            start: start,
+            end: end,
+            device: device,
+            metadata: metadata.adding(uuid: uuid)))
+    }
+
+    /**
+     Create a sample from a quantity.
+     */
+    public init(quantity: HKQuantity, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+        self.init(value: quantity.doubleValue(for: Self.defaultUnit), start: start, end: end, uuid: uuid, device: device, metadata: metadata)
+    }
 }

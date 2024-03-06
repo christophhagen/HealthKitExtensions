@@ -20,12 +20,13 @@ public struct Food: HKCorrelationContainer {
 
 extension Food {
 
-    public init(foodType: String, dietaryEnergyConsumed: Double, start: Date, end: Date, nutritionSamples: [HKDietaryQuantitySampleContainer], uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+    public init(foodType: String, dietaryEnergyConsumed: Double, start: Date, end: Date, nutritionSamples: [HKDietaryQuantity], uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
         metadata[.foodType] = foodType
 
         var objects = Set(nutritionSamples.map { $0.sample })
-        objects.insert(DietaryEnergyConsumed(value: dietaryEnergyConsumed, start: start, end: end).sample)
+        let energyConsumed = DietaryEnergyConsumed(value: dietaryEnergyConsumed, start: start, end: end)
+        objects.insert(energyConsumed.sample)
         self.init(start: start, end: end, objects: objects, uuid: uuid, device: device, metadata: metadata)
     }
 

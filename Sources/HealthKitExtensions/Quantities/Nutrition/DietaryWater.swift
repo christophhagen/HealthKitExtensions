@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryWaterSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryWater
-
-    /// liter
-    public static let defaultUnit: HKUnit = .liter()
-}
-
 /**
  A quantity sample type that measures the amount of water consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryWaterSpecification: HKQuantityTypeSpecification {
 
  The default unit is liter.
  */
-public typealias DietaryWater = HKDietaryQuantityValue<DietaryWaterSpecification>
+public struct DietaryWater: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryWater
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

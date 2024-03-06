@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct SwimmingStrokeCountSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .swimmingStrokeCount
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of strokes performed while swimming.
 
@@ -16,4 +8,13 @@ public struct SwimmingStrokeCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias SwimmingStrokeCount = HKCumulativeQuantityValue<SwimmingStrokeCountSpecification>
+public struct SwimmingStrokeCount: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .swimmingStrokeCount
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

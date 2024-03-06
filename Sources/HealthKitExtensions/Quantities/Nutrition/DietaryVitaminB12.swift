@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryVitaminB12Specification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryVitaminB12
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of cyanocobalamin (vitamin B12) consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryVitaminB12Specification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryVitaminB12 = HKDietaryQuantityValue<DietaryVitaminB12Specification>
+public struct DietaryVitaminB12: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryVitaminB12
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

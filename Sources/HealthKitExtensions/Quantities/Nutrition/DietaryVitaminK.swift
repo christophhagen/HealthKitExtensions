@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryVitaminKSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryVitaminK
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of vitamin K consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryVitaminKSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryVitaminK = HKDietaryQuantityValue<DietaryVitaminKSpecification>
+public struct DietaryVitaminK: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryVitaminK
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

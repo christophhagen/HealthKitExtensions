@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryCholesterolSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryCholesterol
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Cholesterol consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryCholesterolSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryCholesterol = HKDietaryQuantityValue<DietaryCholesterolSpecification>
+public struct DietaryCholesterol: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryCholesterol
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

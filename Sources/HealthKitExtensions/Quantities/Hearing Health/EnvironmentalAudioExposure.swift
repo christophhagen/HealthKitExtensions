@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct EnvironmentalAudioExposureSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .environmentalAudioExposure
-
-    /// joule
-    public static let defaultUnit: HKUnit = .decibelAWeightedSoundPressureLevel()
-}
-
 /**
  A quantity sample type that measures audio exposure to sounds in the environment.
 
@@ -18,4 +10,16 @@ public struct EnvironmentalAudioExposureSpecification: HKQuantityTypeSpecificati
 
  The default unit is dBASPL (see``decibelAWeightedSoundPressureLevel()``).
  */
-public typealias EnvironmentalAudioExposure = HKDiscreteQuantityValue<EnvironmentalAudioExposureSpecification>
+public struct EnvironmentalAudioExposure: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .environmentalAudioExposure
+
+    /// dBASPL
+    public static let defaultUnit: HKUnit = .decibelAWeightedSoundPressureLevel()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

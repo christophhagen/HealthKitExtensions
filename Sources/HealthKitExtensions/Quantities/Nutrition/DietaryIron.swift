@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryIronSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryIron
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Iron consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryIronSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryIron = HKDietaryQuantityValue<DietaryIronSpecification>
+public struct DietaryIron: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryIron
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

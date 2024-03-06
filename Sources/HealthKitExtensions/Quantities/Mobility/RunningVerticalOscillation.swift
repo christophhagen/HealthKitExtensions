@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct RunningVerticalOscillationSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .runningVerticalOscillation
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type measuring pelvis vertical range of motion during a single running stride.
 
@@ -19,5 +10,16 @@ public struct RunningVerticalOscillationSpecification: HKQuantityTypeSpecificati
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningVerticalOscillation = HKDiscreteQuantityValue<RunningVerticalOscillationSpecification>
+public struct RunningVerticalOscillation: HKDiscreteQuantity {
 
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .runningVerticalOscillation
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

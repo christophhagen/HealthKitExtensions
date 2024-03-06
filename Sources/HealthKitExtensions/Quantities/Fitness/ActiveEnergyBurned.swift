@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct ActiveEnergyBurnedSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .activeEnergyBurned
-
-    /// joule
-    public static let defaultUnit: HKUnit = .joule()
-}
-
 /**
  A quantity sample type that measures the amount of active energy the user has burned.
  
@@ -20,4 +12,15 @@ public struct ActiveEnergyBurnedSpecification: HKQuantityTypeSpecification {
 
  The default unit is Joule.
  */
-public typealias ActiveEnergyBurned = HKCumulativeQuantityValue<ActiveEnergyBurnedSpecification>
+public struct ActiveEnergyBurned: HKCumulativeQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .activeEnergyBurned
+
+    public static var defaultUnit: HKUnit = .joule()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

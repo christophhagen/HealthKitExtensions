@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct WaistCircumferenceSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .waistCircumference
-
-    /// microsiemens
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the user’s waist circumference.
  
@@ -16,4 +8,16 @@ public struct WaistCircumferenceSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias WaistCircumference = HKDiscreteQuantityValue<WaistCircumferenceSpecification>
+public struct WaistCircumference: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .waistCircumference
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

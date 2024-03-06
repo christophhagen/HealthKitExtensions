@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BasalBodyTemperatureSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .basalBodyTemperature
-
-    /// °C
-    public static let defaultUnit: HKUnit = .degreeCelsius()
-}
-
 /**
  A quantity sample type that records the user’s basal body temperature.
 
@@ -17,4 +9,16 @@ public struct BasalBodyTemperatureSpecification: HKQuantityTypeSpecification {
 
  The default unit is °C.
  */
-public typealias BasalBodyTemperature = HKDiscreteQuantityValue<BasalBodyTemperatureSpecification>
+public struct BasalBodyTemperature: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .basalBodyTemperature
+
+    /// °C
+    public static let defaultUnit: HKUnit = .degreeCelsius()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

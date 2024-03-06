@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct AtrialFibrillationBurdenSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .atrialFibrillationBurden
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity type that measures an estimate of the percentage of time a person’s heart shows signs of atrial fibrillation (AFib) while wearing Apple Watch.
 
@@ -28,4 +19,16 @@ public struct AtrialFibrillationBurdenSpecification: HKQuantityTypeSpecification
  The default unit is percent.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias AtrialFibrillationBurden = HKDiscreteQuantityValue<AtrialFibrillationBurdenSpecification>
+public struct AtrialFibrillationBurden: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .atrialFibrillationBurden
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

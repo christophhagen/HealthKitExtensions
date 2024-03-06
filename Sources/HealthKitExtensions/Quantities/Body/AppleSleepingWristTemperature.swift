@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct AppleSleepingWristTemperatureSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .appleSleepingWristTemperature
-
-    public static let defaultUnit: HKUnit = .degreeCelsius()
-}
-
 /**
  Apple Watch Series 8 and Apple Watch Ultra can sample a person’s wrist temperature while they sleep. 
  A supported watch measures temperature from both sensors every five seconds overnight during sleep.
@@ -36,4 +28,15 @@ public struct AppleSleepingWristTemperatureSpecification: HKQuantityTypeSpecific
  The default unit is degrees celsius.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias AppleSleepingWristTemperature = HKDiscreteQuantityValue<AppleSleepingWristTemperatureSpecification>
+public struct AppleSleepingWristTemperature: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .appleSleepingWristTemperature
+
+    public static let defaultUnit: HKUnit = .degreeCelsius()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

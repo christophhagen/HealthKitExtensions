@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DistanceDownhillSnowSportsSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .distanceDownhillSnowSports
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the distance the user has traveled while skiing or snowboarding.
 
@@ -16,4 +8,13 @@ public struct DistanceDownhillSnowSportsSpecification: HKQuantityTypeSpecificati
 
  The default unit is meter.
  */
-public typealias DistanceDownhillSnowSports = HKCumulativeQuantityValue<DistanceDownhillSnowSportsSpecification>
+public struct DistanceDownhillSnowSports: HKCumulativeDistance {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .distanceDownhillSnowSports
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

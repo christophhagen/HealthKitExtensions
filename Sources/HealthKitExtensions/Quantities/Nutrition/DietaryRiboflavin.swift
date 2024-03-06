@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryRiboflavinSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryRiboflavin
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of riboflavin (vitamin B2) consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryRiboflavinSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryRiboflavin = HKDietaryQuantityValue<DietaryRiboflavinSpecification>
+public struct DietaryRiboflavin: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryRiboflavin
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

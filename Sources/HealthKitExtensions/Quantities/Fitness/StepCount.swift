@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct StepCountSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .stepCount
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of steps the user has taken.
 
@@ -16,4 +8,13 @@ public struct StepCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias StepCount = HKCumulativeQuantityValue<StepCountSpecification>
+public struct StepCount: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .stepCount
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

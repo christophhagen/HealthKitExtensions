@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BloodGlucoseSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .bloodGlucose
-
-    /// mg/dL
-    public static let defaultUnit: HKUnit = .gramUnit(with: .milli).unitDivided(by: .literUnit(with: .deci))
-}
-
 /**
  A quantity sample type that measures the user’s blood glucose level.
 
@@ -25,4 +17,16 @@ public struct BloodGlucoseSpecification: HKQuantityTypeSpecification {
 
  The default unit is mg/dL.
  */
-public typealias BloodGlucose = HKDiscreteQuantityValue<BloodGlucoseSpecification>
+public struct BloodGlucose: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .bloodGlucose
+
+    /// mg/dL
+    public static let defaultUnit: HKUnit = .gramUnit(with: .milli).unitDivided(by: .literUnit(with: .deci))
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

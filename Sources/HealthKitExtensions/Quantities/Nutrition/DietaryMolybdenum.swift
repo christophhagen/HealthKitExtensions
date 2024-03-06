@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryMolybdenumSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryMolybdenum
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Molybdenum consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryMolybdenumSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryMolybdenum = HKDietaryQuantityValue<DietaryMolybdenumSpecification>
+public struct DietaryMolybdenum: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryMolybdenum
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

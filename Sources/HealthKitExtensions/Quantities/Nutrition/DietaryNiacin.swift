@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryNiacinSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryNiacin
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of niacin (vitamin B3) consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryNiacinSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryNiacin = HKDietaryQuantityValue<DietaryNiacinSpecification>
+public struct DietaryNiacin: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryNiacin
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

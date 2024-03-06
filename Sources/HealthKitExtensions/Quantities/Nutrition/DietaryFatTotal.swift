@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryFatTotalSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryFatTotal
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the total amount of fat consumed.
 
@@ -17,4 +9,17 @@ public struct DietaryFatTotalSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryFatTotal = HKDietaryQuantityValue<DietaryFatTotalSpecification>
+public struct DietaryFatTotal: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryFatTotal
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

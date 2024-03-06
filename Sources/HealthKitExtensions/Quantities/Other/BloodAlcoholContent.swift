@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BloodAlcoholContentSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .bloodAlcoholContent
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the user’s blood alcohol content.
 
@@ -16,4 +8,16 @@ public struct BloodAlcoholContentSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias BloodAlcoholContent = HKDiscreteQuantityValue<BloodAlcoholContentSpecification>
+public struct BloodAlcoholContent: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .bloodAlcoholContent
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

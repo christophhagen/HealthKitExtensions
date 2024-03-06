@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct WalkingStepLengthSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .walkingStepLength
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the average length of the user’s step when walking steadily over flat ground.
 
@@ -28,5 +20,16 @@ public struct WalkingStepLengthSpecification: HKQuantityTypeSpecification {
  
  The default unit is meters.
  */
-public typealias WalkingStepLength = HKDiscreteQuantityValue<WalkingStepLengthSpecification>
+public struct WalkingStepLength: HKDiscreteQuantity {
 
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .walkingStepLength
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

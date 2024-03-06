@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct AppleWalkingSteadinessSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .appleWalkingSteadiness
-
-    /// joule
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the steadiness of the user’s gait.
 
@@ -32,4 +24,16 @@ public struct AppleWalkingSteadinessSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias AppleWalkingSteadiness = HKDiscreteQuantityValue<AppleWalkingSteadinessSpecification>
+public struct AppleWalkingSteadiness: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .appleWalkingSteadiness
+
+    /// joule
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

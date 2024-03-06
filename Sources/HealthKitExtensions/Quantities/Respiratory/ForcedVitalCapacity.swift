@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct ForcedVitalCapacitySpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .forcedVitalCapacity
-
-    /// liter
-    public static let defaultUnit: HKUnit = .liter()
-}
-
 /**
  A quantity sample type that measures the amount of air that can be forcibly exhaled from the lungs after taking the deepest breath possible.
 
@@ -16,4 +8,16 @@ public struct ForcedVitalCapacitySpecification: HKQuantityTypeSpecification {
 
  The default unit is liter.
  */
-public typealias ForcedVitalCapacity = HKDiscreteQuantityValue<ForcedVitalCapacitySpecification>
+public struct ForcedVitalCapacity: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .forcedVitalCapacity
+
+    /// liter
+    public static let defaultUnit: HKUnit = .liter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

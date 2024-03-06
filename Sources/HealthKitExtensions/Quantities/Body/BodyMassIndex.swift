@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BodyMassIndexSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .bodyMassIndex
-
-    /// Count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the user’s body mass index.
  
@@ -16,4 +8,16 @@ public struct BodyMassIndexSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts.
  */
-public typealias BodyMassIndex = HKDiscreteQuantityValue<BodyMassIndexSpecification>
+public struct BodyMassIndex: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .bodyMassIndex
+
+    /// Count
+    public static let defaultUnit: HKUnit = .count()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

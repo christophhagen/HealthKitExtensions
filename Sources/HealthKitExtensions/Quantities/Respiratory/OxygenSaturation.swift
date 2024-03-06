@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct OxygenSaturationSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .oxygenSaturation
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the user’s oxygen saturation.
 
@@ -17,4 +9,16 @@ public struct OxygenSaturationSpecification: HKQuantityTypeSpecification {
 
  The default unit is percent.
  */
-public typealias OxygenSaturation = HKDiscreteQuantityValue<OxygenSaturationSpecification>
+public struct OxygenSaturation: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .oxygenSaturation
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct NumberOfAlcoholicBeveragesSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .numberOfAlcoholicBeverages
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of standard alcoholic drinks that the user has consumed.
 
@@ -52,4 +44,13 @@ public struct NumberOfAlcoholicBeveragesSpecification: HKQuantityTypeSpecificati
  ```
  The default unit is counts.
  */
-public typealias NumberOfAlcoholicBeverages = HKCumulativeQuantityValue<NumberOfAlcoholicBeveragesSpecification>
+public struct NumberOfAlcoholicBeverages: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .numberOfAlcoholicBeverages
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct AppleExerciseTimeSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .appleExerciseTime
-
-    /// seconds
-    public static let defaultUnit: HKUnit = .second()
-}
-
 /**
  A quantity sample type that measures the amount of time the user spent exercising.
  
@@ -24,4 +16,15 @@ public struct AppleExerciseTimeSpecification: HKQuantityTypeSpecification {
 
  The default unit is seconds.
  */
-public typealias AppleExerciseTime = HKCumulativeQuantityValue<AppleExerciseTimeSpecification>
+public struct AppleExerciseTime: HKCumulativeQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .appleExerciseTime
+
+    public static var defaultUnit: HKUnit = .second()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct UvExposureSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .uvExposure
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the user’s exposure to UV radiation.
 
@@ -17,4 +9,16 @@ public struct UvExposureSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias UvExposure = HKDiscreteQuantityValue<UvExposureSpecification>
+public struct UvExposure: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .uvExposure
+
+    /// count
+    public static let defaultUnit: HKUnit = .count()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

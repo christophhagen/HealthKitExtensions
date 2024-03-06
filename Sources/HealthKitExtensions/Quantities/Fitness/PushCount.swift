@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct PushCountSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .pushCount
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of pushes that the user has performed while using a wheelchair.
 
@@ -16,4 +8,13 @@ public struct PushCountSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias PushCount = HKCumulativeQuantityValue<PushCountSpecification>
+public struct PushCount: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .pushCount
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

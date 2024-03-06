@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct NumberOfTimesFallenSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .numberOfTimesFallen
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of times the user fell.
 
@@ -39,4 +31,13 @@ public struct NumberOfTimesFallenSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts.
  */
-public typealias NumberOfTimesFallen = HKCumulativeQuantityValue<NumberOfTimesFallenSpecification>
+public struct NumberOfTimesFallen: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .numberOfTimesFallen
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

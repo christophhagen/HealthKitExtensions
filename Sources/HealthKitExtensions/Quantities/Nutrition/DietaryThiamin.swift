@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryThiaminSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryThiamin
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of thiamin (vitamin B1) consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryThiaminSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryThiamin = HKDietaryQuantityValue<DietaryThiaminSpecification>
+public struct DietaryThiamin: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryThiamin
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

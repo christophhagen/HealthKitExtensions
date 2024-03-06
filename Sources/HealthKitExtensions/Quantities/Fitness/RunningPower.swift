@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct RunningPowerSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .runningPower
-
-    /// watt
-    public static let defaultUnit: HKUnit = .watt()
-}
-
 /**
  A quantity sample type that measures the rate of work required for the runner to maintain their speed.
 
@@ -19,4 +10,16 @@ public struct RunningPowerSpecification: HKQuantityTypeSpecification {
  The default unit is Watt.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningPower = HKDiscreteQuantityValue<RunningPowerSpecification>
+public struct RunningPower: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .runningPower
+
+    /// watt
+    public static let defaultUnit: HKUnit = .watt()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

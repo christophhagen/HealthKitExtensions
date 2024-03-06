@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct StairAscentSpeedSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .stairAscentSpeed
-
-    /// m/s
-    public static let defaultUnit: HKUnit = .meter().unitDivided(by: .second())
-}
-
 /**
  A quantity sample type measuring the user’s speed while climbing a flight of stairs.
 
@@ -29,5 +21,16 @@ public struct StairAscentSpeedSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter per second.
  */
-public typealias StairAscentSpeed = HKDiscreteQuantityValue<StairAscentSpeedSpecification>
+public struct StairAscentSpeed: HKDiscreteQuantity {
 
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .stairAscentSpeed
+
+    /// m/s
+    public static let defaultUnit: HKUnit = .meter().unitDivided(by: .second())
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

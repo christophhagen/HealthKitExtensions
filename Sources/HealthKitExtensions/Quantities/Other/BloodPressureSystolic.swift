@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BloodPressureSystolicSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .bloodPressureSystolic
-
-    /// mmHg
-    public static let defaultUnit: HKUnit = .millimeterOfMercury()
-}
-
 /**
  A quantity sample type that measures the user’s systolic blood pressure.
 
@@ -17,4 +9,16 @@ public struct BloodPressureSystolicSpecification: HKQuantityTypeSpecification {
 
  The default unit is mmHg.
  */
-public typealias BloodPressureSystolic = HKDiscreteQuantityValue<BloodPressureSystolicSpecification>
+public struct BloodPressureSystolic: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .bloodPressureSystolic
+
+    /// mmHg
+    public static let defaultUnit: HKUnit = .millimeterOfMercury()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

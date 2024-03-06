@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryChromiumSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryChromium
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Chromium consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryChromiumSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryChromium = HKDietaryQuantityValue<DietaryChromiumSpecification>
+public struct DietaryChromium: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryChromium
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

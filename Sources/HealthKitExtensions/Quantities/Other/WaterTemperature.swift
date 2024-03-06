@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct WaterTemperatureSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .waterTemperature
-
-    /// °C
-    public static let defaultUnit: HKUnit = .degreeCelsius()
-}
-
 /**
  A quantity sample that records the water temperature.
 
@@ -20,4 +11,16 @@ public struct WaterTemperatureSpecification: HKQuantityTypeSpecification {
  The default unit is °C.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias WaterTemperature = HKDiscreteQuantityValue<WaterTemperatureSpecification>
+public struct WaterTemperature: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .waterTemperature
+
+    /// °C
+    public static let defaultUnit: HKUnit = .degreeCelsius()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

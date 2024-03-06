@@ -1,17 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct Vo2MaxSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .vo2Max
-
-    /// `ml/(kg*min)`
-    public static let defaultUnit: HKUnit = 
-        .literUnit(with: .milli)
-        .unitDivided(by: .minute())
-        .unitDivided(by: .gramUnit(with: .kilo))
-}
-
 /**
  A quantity sample that measures the maximal oxygen consumption during exercise.
 
@@ -45,7 +34,22 @@ public struct Vo2MaxSpecification: HKQuantityTypeSpecification {
 
  The default unit is `ml/(kg*min)`
  */
-public typealias Vo2Max = HKDiscreteQuantityValue<Vo2MaxSpecification>
+public struct Vo2Max: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .vo2Max
+
+    /// `ml/(kg*min)`
+    public static let defaultUnit: HKUnit =
+        .literUnit(with: .milli)
+        .unitDivided(by: .minute())
+        .unitDivided(by: .gramUnit(with: .kilo))
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
 
 extension Vo2Max {
 

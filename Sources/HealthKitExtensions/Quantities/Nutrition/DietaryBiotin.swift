@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryBiotinSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryBiotin
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of biotin (vitamin B7) consumed.
 
@@ -16,4 +8,16 @@ public struct DietaryBiotinSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryBiotin = HKDietaryQuantityValue<DietaryBiotinSpecification>
+public struct DietaryBiotin: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryBiotin
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct PeakExpiratoryFlowRateSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .peakExpiratoryFlowRate
-
-    /// L/min
-    public static let defaultUnit: HKUnit = .liter().unitDivided(by: .minute())
-}
-
 /**
  A quantity sample type that measures the user’s maximum flow rate generated during a forceful exhalation.
 
@@ -16,4 +8,16 @@ public struct PeakExpiratoryFlowRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is L/min.
  */
-public typealias PeakExpiratoryFlowRate = HKDiscreteQuantityValue<PeakExpiratoryFlowRateSpecification>
+public struct PeakExpiratoryFlowRate: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .peakExpiratoryFlowRate
+
+    /// L/min
+    public static let defaultUnit: HKUnit = .liter().unitDivided(by: .minute())
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

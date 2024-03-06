@@ -3,14 +3,24 @@ import HealthKit
 
 public protocol HKQuantitySampleContainer: HKSampleContainer {
 
+    static var quantityTypeIdentifier: HKQuantityTypeIdentifier { get }
+
+    static var defaultUnit: HKUnit { get }
+
     var quantitySample: HKQuantitySample { get }
 
     init(quantitySample: HKQuantitySample)
-
-    static var quantitySampleType: HKQuantityType { get }
 }
 
 extension HKQuantitySampleContainer {
+
+    public static var quantitySampleType: HKQuantityType { .init(quantityTypeIdentifier) }
+
+    public var quantitySampleType: HKQuantityType { Self.quantitySampleType }
+
+
+    /// The unit used for the sample by default
+    public var defaultUnit: HKUnit { Self.defaultUnit }
 
     public var sample: HKSample { quantitySample }
 
@@ -30,14 +40,22 @@ extension HKQuantitySampleContainer {
     public var quantity: HKQuantity { quantitySample.quantity }
 
     /**
+     The value in the default unit
+
+     To access the default unit, use ``defaultUnit``.
+     To access the quanity directly, use ``quantity``.
+     */
+    public var value: Double {
+        quantity.doubleValue(for: Self.defaultUnit)
+    }
+
+    /**
      The number of quantities contained in this sample.
      
      Samples created using one of the `init()` methods have a count of `1`.
      Samples created using an ``HKQuantitySeriesSampleBuilder`` may have a count greater than `1`.
      */
     public var count: Int { quantitySample.count }
-
-    public var quantitySampleType: HKQuantityType { Self.quantitySampleType }
 
     /// The aggregation style for the quantity
     public var aggregationStyle: HKQuantityAggregationStyle { quantitySampleType.aggregationStyle }

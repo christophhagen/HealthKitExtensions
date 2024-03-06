@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct LeanBodyMassSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .leanBodyMass
-
-    /// Kg
-    public static let defaultUnit: HKUnit = .gramUnit(with: .kilo)
-}
-
 /**
  A quantity sample type that measures the user’s lean body mass.
  
@@ -16,4 +8,16 @@ public struct LeanBodyMassSpecification: HKQuantityTypeSpecification {
 
  The default unit is kilograms.
  */
-public typealias LeanBodyMass = HKDiscreteQuantityValue<LeanBodyMassSpecification>
+public struct LeanBodyMass: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .leanBodyMass
+
+    /// Kg
+    public static let defaultUnit: HKUnit = .gramUnit(with: .kilo)
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

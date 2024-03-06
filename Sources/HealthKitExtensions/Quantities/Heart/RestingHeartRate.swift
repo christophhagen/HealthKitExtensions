@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct RestingHeartRateSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .restingHeartRate
-
-    /// counts per second
-    public static let defaultUnit: HKUnit = .count().unitDivided(by: .second())
-}
-
 /**
  A quantity sample type that measures the user’s resting heart rate.
 
@@ -25,4 +17,16 @@ public struct RestingHeartRateSpecification: HKQuantityTypeSpecification {
 
  The default unit is counts per second.
  */
-public typealias RestingHeartRate = HKDiscreteQuantityValue<RestingHeartRateSpecification>
+public struct RestingHeartRate: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .restingHeartRate
+
+    /// counts per second
+    public static let defaultUnit: HKUnit = .count().unitDivided(by: .second())
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

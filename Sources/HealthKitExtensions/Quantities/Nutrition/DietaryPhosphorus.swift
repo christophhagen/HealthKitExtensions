@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryPhosphorusSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryPhosphorus
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Phosphorus consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryPhosphorusSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryPhosphorus = HKDietaryQuantityValue<DietaryPhosphorusSpecification>
+public struct DietaryPhosphorus: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryPhosphorus
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

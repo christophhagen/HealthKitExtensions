@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct RunningStrideLengthSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .runningStrideLength
-
-    /// joule
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the distance covered by a single step while running.
 
@@ -19,5 +10,17 @@ public struct RunningStrideLengthSpecification: HKQuantityTypeSpecification {
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningStrideLength = HKDiscreteQuantityValue<RunningStrideLengthSpecification>
+public struct RunningStrideLength: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .runningStrideLength
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
 

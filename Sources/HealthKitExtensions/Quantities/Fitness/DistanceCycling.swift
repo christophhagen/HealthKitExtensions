@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DistanceCyclingSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .distanceCycling
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that measures the distance the user has moved by cycling.
  
@@ -16,4 +8,13 @@ public struct DistanceCyclingSpecification: HKQuantityTypeSpecification {
 
  The default unit is meter.
  */
-public typealias DistanceCycling = HKCumulativeQuantityValue<DistanceCyclingSpecification>
+public struct DistanceCycling: HKCumulativeDistance {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .distanceCycling
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

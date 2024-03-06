@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct SixMinuteWalkTestDistanceSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .sixMinuteWalkTestDistance
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample type that stores the distance a user can walk during a six-minute walk test.
 
@@ -43,7 +35,19 @@ public struct SixMinuteWalkTestDistanceSpecification: HKQuantityTypeSpecificatio
 
  The default unit is meter.
  */
-public typealias SixMinuteWalkTestDistance = HKDiscreteQuantityValue<SixMinuteWalkTestDistanceSpecification>
+public struct SixMinuteWalkTestDistance: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .sixMinuteWalkTestDistance
+
+    /// meter
+    public static let defaultUnit: HKUnit = .meter()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
 
 extension SixMinuteWalkTestDistance {
 

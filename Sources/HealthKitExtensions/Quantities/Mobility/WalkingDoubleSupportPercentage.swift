@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct WalkingDoubleSupportPercentageSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .walkingDoubleSupportPercentage
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the percentage of time when both of the user’s feet touch the ground while walking steadily over flat ground.
 
@@ -32,5 +24,16 @@ public struct WalkingDoubleSupportPercentageSpecification: HKQuantityTypeSpecifi
 
  The default unit is percent.
  */
-public typealias WalkingDoubleSupportPercentage = HKDiscreteQuantityValue<WalkingDoubleSupportPercentageSpecification>
+public struct WalkingDoubleSupportPercentage: HKDiscreteQuantity {
 
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .walkingDoubleSupportPercentage
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

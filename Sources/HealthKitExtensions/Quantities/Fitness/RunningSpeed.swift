@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct RunningSpeedSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .runningSpeed
-
-    /// m/s
-    public static let defaultUnit: HKUnit = .meter().unitDivided(by: .second())
-}
-
 /**
  A quantity sample type that measures the runner’s speed.
 
@@ -19,4 +10,16 @@ public struct RunningSpeedSpecification: HKQuantityTypeSpecification {
  The default unit is meter per second.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias RunningSpeed = HKDiscreteQuantityValue<RunningSpeedSpecification>
+public struct RunningSpeed: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .runningSpeed
+
+    /// m/s
+    public static let defaultUnit: HKUnit = .meter().unitDivided(by: .second())
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct NikeFuelSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .nikeFuel
-
-    /// count
-    public static let defaultUnit: HKUnit = .count()
-}
-
 /**
  A quantity sample type that measures the number of NikeFuel points the user has earned.
 
@@ -16,4 +8,13 @@ public struct NikeFuelSpecification: HKQuantityTypeSpecification {
 
  The default unit is count.
  */
-public typealias NikeFuel = HKCumulativeQuantityValue<NikeFuelSpecification>
+public struct NikeFuel: HKCumulativeCount {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .nikeFuel
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

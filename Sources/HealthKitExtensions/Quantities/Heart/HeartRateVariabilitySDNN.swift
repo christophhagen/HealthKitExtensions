@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct HeartRateVariabilitySDNNSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .heartRateVariabilitySDNN
-
-    /// second
-    public static let defaultUnit: HKUnit = .second()
-}
-
 /**
  A quantity sample type that measures the standard deviation of heartbeat intervals.
  
@@ -18,4 +10,16 @@ public struct HeartRateVariabilitySDNNSpecification: HKQuantityTypeSpecification
 
  The default unit is seconds.
  */
-public typealias HeartRateVariabilitySDNN = HKDiscreteQuantityValue<HeartRateVariabilitySDNNSpecification>
+public struct HeartRateVariabilitySDNN: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .heartRateVariabilitySDNN
+
+    /// second
+    public static let defaultUnit: HKUnit = .second()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

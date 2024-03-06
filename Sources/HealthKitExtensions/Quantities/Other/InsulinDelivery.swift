@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct InsulinDeliverySpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .insulinDelivery
-
-    /// IU
-    public static let defaultUnit: HKUnit = .internationalUnit()
-}
-
 /**
  A quantity sample that measures the amount of insulin delivered.
 
@@ -16,7 +8,18 @@ public struct InsulinDeliverySpecification: HKQuantityTypeSpecification {
 
  The default unit is IU.
  */
-public typealias InsulinDelivery = HKCumulativeQuantityValue<InsulinDeliverySpecification>
+public struct InsulinDelivery: HKCumulativeQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .insulinDelivery
+
+    public static var defaultUnit: HKUnit = .internationalUnit()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
 
 extension InsulinDelivery {
 

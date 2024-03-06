@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryManganeseSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryManganese
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of Manganese consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryManganeseSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryManganese = HKDietaryQuantityValue<DietaryManganeseSpecification>
+public struct DietaryManganese: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryManganese
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

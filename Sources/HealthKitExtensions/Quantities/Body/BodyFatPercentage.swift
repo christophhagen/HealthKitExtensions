@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct BodyFatPercentageSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .bodyFatPercentage
-
-    /// Percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the user’s body fat percentage.
  
@@ -16,4 +8,15 @@ public struct BodyFatPercentageSpecification: HKQuantityTypeSpecification {
  
  The default unit is percent.
  */
-public typealias BodyFatPercentage = HKDiscreteQuantityValue<BodyFatPercentageSpecification>
+public struct BodyFatPercentage: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .bodyFatPercentage
+
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}

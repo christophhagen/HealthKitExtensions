@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct WalkingAsymmetryPercentageSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .walkingAsymmetryPercentage
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the percentage of steps in which one foot moves at a different speed than the other when walking on flat ground.
 
@@ -28,7 +20,19 @@ public struct WalkingAsymmetryPercentageSpecification: HKQuantityTypeSpecificati
 
  The default unit is percent.
  */
-public typealias WalkingAsymmetryPercentage = HKDiscreteQuantityValue<WalkingAsymmetryPercentageSpecification>
+public struct WalkingAsymmetryPercentage: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .walkingAsymmetryPercentage
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
 
 extension WalkingAsymmetryPercentage {
 

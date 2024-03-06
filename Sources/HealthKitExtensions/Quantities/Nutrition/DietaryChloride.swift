@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryChlorideSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryChloride
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of chloride consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryChlorideSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryChloride = HKDietaryQuantityValue<DietaryChlorideSpecification>
+public struct DietaryChloride: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryChloride
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

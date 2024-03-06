@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct DietaryFolateSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .dietaryFolate
-
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
-}
-
 /**
  A quantity sample type that measures the amount of folate (folic acid) consumed.
 
@@ -16,4 +8,17 @@ public struct DietaryFolateSpecification: HKQuantityTypeSpecification {
 
  The default unit is gram.
  */
-public typealias DietaryFolate = HKDietaryQuantityValue<DietaryFolateSpecification>
+public struct DietaryFolate: HKDietaryQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryFolate
+
+    /// gram
+    public static let defaultUnit: HKUnit = .gram()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}
+

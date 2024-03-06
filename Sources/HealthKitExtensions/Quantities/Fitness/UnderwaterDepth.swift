@@ -1,15 +1,6 @@
 import Foundation
 import HealthKit
 
-@available(iOS 16.0, watchOS 9.0, *)
-public struct UnderwaterDepthSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .underwaterDepth
-
-    /// meter
-    public static let defaultUnit: HKUnit = .meter()
-}
-
 /**
  A quantity sample that records a person’s depth underwater.
 
@@ -20,4 +11,15 @@ public struct UnderwaterDepthSpecification: HKQuantityTypeSpecification {
  The default unit is meter.
  */
 @available(iOS 16.0, watchOS 9.0, *)
-public typealias UnderwaterDepth = HKCumulativeQuantityValue<UnderwaterDepthSpecification>
+public struct UnderwaterDepth: HKCumulativeQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .underwaterDepth
+
+    public static var defaultUnit: HKUnit = .meter()
+
+    public let cumulativeQuantitySample: HKCumulativeQuantitySample
+
+    public init(cumulativeQuantitySample: HKCumulativeQuantitySample) {
+        self.cumulativeQuantitySample = cumulativeQuantitySample
+    }
+}

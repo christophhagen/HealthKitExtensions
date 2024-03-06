@@ -1,14 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct PeripheralPerfusionIndexSpecification: HKQuantityTypeSpecification {
-
-    public static let identifier: HKQuantityTypeIdentifier = .peripheralPerfusionIndex
-
-    /// percent
-    public static let defaultUnit: HKUnit = .percent()
-}
-
 /**
  A quantity sample type that measures the user’s peripheral perfusion index.
  
@@ -17,4 +9,16 @@ public struct PeripheralPerfusionIndexSpecification: HKQuantityTypeSpecification
 
  The default unit is percent.
  */
-public typealias PeripheralPerfusionIndex = HKDiscreteQuantityValue<PeripheralPerfusionIndexSpecification>
+public struct PeripheralPerfusionIndex: HKDiscreteQuantity {
+
+    public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .peripheralPerfusionIndex
+
+    /// percent
+    public static let defaultUnit: HKUnit = .percent()
+
+    public let discreteQuantitySample: HKDiscreteQuantitySample
+
+    public init(discreteQuantitySample: HKDiscreteQuantitySample) {
+        self.discreteQuantitySample = discreteQuantitySample
+    }
+}
