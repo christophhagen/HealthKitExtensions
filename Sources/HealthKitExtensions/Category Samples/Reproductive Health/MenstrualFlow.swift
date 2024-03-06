@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueMenstrualFlow: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .menstrualFlow
-}
-
 /**
  A category sample type that records menstrual cycles.
  
@@ -20,7 +16,18 @@ extension HKCategoryValueMenstrualFlow: HKCategoryTypeIdentifierProvider {
  Use false for any additional samples. 
  Different samples can use different menstrualFlow values to record the changes in flow over time.
  */
-public typealias MenstrualFlow = HKCategoryEnumSample<HKCategoryValueMenstrualFlow>
+public struct MenstrualFlow: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValueMenstrualFlow
+
+    public var categorySample: HKCategorySample
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .menstrualFlow
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
 
 extension MenstrualFlow {
 

@@ -26,6 +26,10 @@ extension Metadata {
         value(for: key)
     }
 
+    func quantityValue(for key: MetadataKey, unit: HKUnit) -> Double? {
+        quantity(for: key)?.doubleValue(for: unit)
+    }
+
     mutating func set(value: Any?, for key: MetadataKey) {
         self[key.rawValue] = value
     }

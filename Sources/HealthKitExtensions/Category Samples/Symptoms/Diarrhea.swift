@@ -1,16 +1,19 @@
 import Foundation
 import HealthKit
 
-@available(iOS 13.6, *)
-public struct DiarrheaIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .diarrhea
-}
-
 /**
  A category type that records diarrhea as a symptom.
 
  These samples use values from the ``HKCategoryValueSeverity`` enumeration.
  */
 @available(iOS 13.6, *)
-public typealias Diarrhea = HKCategoryValueSeveritySample<DiarrheaIdentifier>
+public struct Diarrhea: HKCategoryValueSeveritySample {
 
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .diarrhea
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

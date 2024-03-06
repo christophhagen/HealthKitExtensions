@@ -5,16 +5,18 @@ import HealthKit
  A sample with a value consisting of an integer enumeration.
  */
 @available(iOS 15.0, *)
-public struct HKCategoryGenericEnumSample<Identifier, Value>: HKCategorySampleContainer where Identifier: HKCategoryTypeIdentifierProvider, Value: RawRepresentable, Value.RawValue == Int {
+public protocol HKCategoryEnumSample: HKCategorySampleContainer {
 
-    public var categorySample: HKCategorySample
+    associatedtype Value: RawRepresentable where Value.RawValue == Int
 
-    public init(categorySample: HKCategorySample) {
-        self.categorySample = categorySample
-    }
+    var categorySample: HKCategorySample { get }
 
-    public static var categoryTypeIdentifier: HKCategoryTypeIdentifier { Identifier.identifier }
+    init(categorySample: HKCategorySample)
 
+    static var categoryTypeIdentifier: HKCategoryTypeIdentifier { get }
+}
+
+extension HKCategoryEnumSample {
     /**
      Create an enum sample.
 
@@ -22,7 +24,7 @@ public struct HKCategoryGenericEnumSample<Identifier, Value>: HKCategorySampleCo
      */
     public init(value: Value, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         self.init(categorySample: .init(
-            type: .init(Identifier.identifier),
+            type: .init(Self.categoryTypeIdentifier),
             value: value.rawValue,
             start: start,
             end: end,
@@ -36,7 +38,10 @@ public struct HKCategoryGenericEnumSample<Identifier, Value>: HKCategorySampleCo
 }
 
 @available(iOS 15.0, *)
-public typealias HKCategoryEnumSample<Value> = HKCategoryGenericEnumSample<Value, Value> where Value: HKCategoryTypeIdentifierProvider, Value: RawRepresentable, Value.RawValue == Int
+public protocol HKCategoryValueSeveritySample: HKCategoryEnumSample where Value == HKCategoryValueSeverity {
 
-@available(iOS 15.0, *)
-public typealias HKCategoryValueSeveritySample<T> = HKCategoryGenericEnumSample<T, HKCategoryValueSeverity> where T: HKCategoryTypeIdentifierProvider
+}
+
+public protocol HKCategoryPresenceSample: HKCategoryEnumSample where Value == HKCategoryValuePresence {
+
+}

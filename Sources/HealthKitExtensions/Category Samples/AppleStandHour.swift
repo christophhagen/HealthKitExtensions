@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueAppleStandHour: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .appleStandHour
-}
-
 /**
  A category sample type that counts the number of hours in the day during which the user has stood and moved for at least one minute per hour.
 
@@ -17,6 +13,16 @@ extension HKCategoryValueAppleStandHour: HKCategoryTypeIdentifierProvider {
  These samples use values from the ``HKCategoryValueAppleStandHour`` enumeration.
  They represent the data tracked by the Stand ring on Apple Watch.
  */
-public typealias AppleStandHour = HKCategoryEnumSample<HKCategoryValueAppleStandHour>
+public struct AppleStandHour: HKCategoryEnumSample {
 
+    public typealias Value = HKCategoryValueAppleStandHour
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .appleStandHour
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
 

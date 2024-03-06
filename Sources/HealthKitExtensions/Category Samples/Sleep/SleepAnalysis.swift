@@ -1,17 +1,24 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueSleepAnalysis: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .sleepAnalysis
-}
-
 /**
  A category sample type for sleep analysis information.
 
  These samples use values from the ``HKCategoryValueSleepAnalysis`` enum.
  For best results when analyzing sleep samples, it's recommended that you use ``HKMetadataKeyTimeZone`` to store time zone metadata with your sleep sample data.
  */
-public typealias SleepAnalysis = HKCategoryEnumSample<HKCategoryValueSleepAnalysis>
+public struct SleepAnalysis: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValueSleepAnalysis
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .sleepAnalysis
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
 
 extension SleepAnalysis {
 

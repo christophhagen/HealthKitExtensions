@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-public struct LactationIdentifier: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .lactation
-}
-
 /**
  A category type that records lactation.
  

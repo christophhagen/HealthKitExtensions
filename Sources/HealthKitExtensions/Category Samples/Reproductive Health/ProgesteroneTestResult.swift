@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueProgesteroneTestResult: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .progesteroneTestResult
-}
-
 /**
  A category type that represents the results from a home progesterone test.
  
@@ -12,4 +8,15 @@ extension HKCategoryValueProgesteroneTestResult: HKCategoryTypeIdentifierProvide
  
  Samples of this type use values from the ``HKCategoryValueProgesteroneTestResult`` enumeration.
  */
-public typealias ProgesteroneTestResult = HKCategoryEnumSample<HKCategoryValueProgesteroneTestResult>
+public struct ProgesteroneTestResult: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValueProgesteroneTestResult
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .progesteroneTestResult
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

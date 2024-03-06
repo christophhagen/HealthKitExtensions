@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueLowCardioFitnessEvent: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .lowCardioFitnessEvent
-}
-
 /**
  An event that indicates the user’s VO2 max values consistently fall below a particular aerobic fitness threshold.
 
@@ -29,7 +25,18 @@ extension HKCategoryValueLowCardioFitnessEvent: HKCategoryTypeIdentifierProvider
  Low-cardio fitness event samples are read-only.
  Use this identifier to request permission to read these samples; however, you can’t request authorization to share them, and you can’t save new low-cardio fitness event samples to the HealthKit store.
  */
-public typealias LowCardioFitnessEvent = HKCategoryEnumSample<HKCategoryValueLowCardioFitnessEvent>
+public struct LowCardioFitnessEvent: HKCategoryEnumSample {
+    
+    public typealias Value = HKCategoryValueLowCardioFitnessEvent
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .lowCardioFitnessEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
 
 extension LowCardioFitnessEvent {
 
@@ -61,12 +68,5 @@ extension LowCardioFitnessEvent {
         metadata[.vo2MaxValue] = HKQuantity(unit: unit, doubleValue: vo2MaxValue)
         metadata[.lowCardioFitnessEventThreshold] = HKQuantity(unit: unit, doubleValue: fitnessThreshold)
         self.init(value: value, start: start, end: end, device: device, metadata: metadata)
-    }
-}
-
-extension Metadata {
-
-    func quantityValue(for key: MetadataKey, unit: HKUnit) -> Double? {
-        quantity(for: key)?.doubleValue(for: unit)
     }
 }

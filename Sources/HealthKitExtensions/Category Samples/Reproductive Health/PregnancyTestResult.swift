@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValuePregnancyTestResult: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .pregnancyTestResult
-}
-
 /**
  A category type that represents the results from a home pregnancy test.
  
@@ -12,4 +8,15 @@ extension HKCategoryValuePregnancyTestResult: HKCategoryTypeIdentifierProvider {
  
  Samples of this type use values from the ``HKCategoryValuePregnancyTestResult`` enumeration.
  */
-public typealias PregnancyTestResult = HKCategoryEnumSample<HKCategoryValuePregnancyTestResult>
+public struct PregnancyTestResult: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValuePregnancyTestResult
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .pregnancyTestResult
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

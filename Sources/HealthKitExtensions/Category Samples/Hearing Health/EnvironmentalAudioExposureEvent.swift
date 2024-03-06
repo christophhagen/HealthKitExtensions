@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueEnvironmentalAudioExposureEvent: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .environmentalAudioExposureEvent
-}
-
 /**
  A category sample type that records exposure to potentially damaging sounds from the environment.
 
@@ -19,4 +15,15 @@ extension HKCategoryValueEnvironmentalAudioExposureEvent: HKCategoryTypeIdentifi
 
  Samples of this type use values from the ``HKCategoryValueEnvironmentalAudioExposureEvent`` enumeration.
  */
-public typealias EnvironmentalAudioExposureEvent = HKCategoryEnumSample<HKCategoryValueEnvironmentalAudioExposureEvent>
+public struct EnvironmentalAudioExposureEvent: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValueEnvironmentalAudioExposureEvent
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .environmentalAudioExposureEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}

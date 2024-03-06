@@ -1,10 +1,6 @@
 import Foundation
 import HealthKit
 
-extension HKCategoryValueAppleWalkingSteadinessEvent: HKCategoryTypeIdentifierProvider {
-    public static let identifier: HKCategoryTypeIdentifier = .appleWalkingSteadinessEvent
-}
-
 /**
  A category sample type that records an incident where the user showed a reduced score for their gait’s steadiness.
  
@@ -15,4 +11,15 @@ extension HKCategoryValueAppleWalkingSteadinessEvent: HKCategoryTypeIdentifierPr
  This means you can’t save new Walking Steadiness events to the HealthKit store.
  To add test data in iOS Simulator, open the Health app and select Browse > Mobility > Walking Steadiness Notifications > Add Data.
  */
-public typealias AppleWalkingSteadinessEvent = HKCategoryEnumSample<HKCategoryValueAppleWalkingSteadinessEvent>
+public struct AppleWalkingSteadinessEvent: HKCategoryEnumSample {
+
+    public typealias Value = HKCategoryValueAppleWalkingSteadinessEvent
+
+    public static let categoryTypeIdentifier: HKCategoryTypeIdentifier = .appleWalkingSteadinessEvent
+
+    public let categorySample: HKCategorySample
+
+    public init(categorySample: HKCategorySample) {
+        self.categorySample = categorySample
+    }
+}
