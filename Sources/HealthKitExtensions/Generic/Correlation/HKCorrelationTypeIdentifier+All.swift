@@ -13,3 +13,14 @@ extension HKCorrelationTypeIdentifier: CaseIterable {
         ]
     }
 }
+
+extension HKCorrelationTypeIdentifier: CustomStringConvertible {
+
+    public var description: String {
+        switch self {
+        case .bloodPressure: return "Blood Pressure"
+        case .food: return "Food"
+        default: return rawValue
+        }
+    }
+}
