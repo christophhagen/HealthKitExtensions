@@ -33,5 +33,10 @@ extension Food {
     public var foodType: String? {
         metadata?[.foodType]
     }
+
+    /// The associated sample of consumed dietary energy
+    public var dietaryEnergyConsumed: DietaryEnergyConsumed? {
+        first()
+    }
 }
 

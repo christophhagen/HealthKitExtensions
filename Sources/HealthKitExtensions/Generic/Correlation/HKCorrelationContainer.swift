@@ -45,4 +45,9 @@ extension HKCorrelationContainer {
     public func samples<T>(of type: T.Type = T.self) -> [T] where T: HKQuantitySampleContainer {
         correlation.objects(for: T.quantitySampleType).map(T.init)
     }
+
+    func first<T>() -> T? where T: HKQuantitySampleContainer {
+        objects.first { ($0 as? HKQuantitySample)?.quantityType == T.quantitySampleType }
+            .map { T.init(sample: $0) }
+    }
 }

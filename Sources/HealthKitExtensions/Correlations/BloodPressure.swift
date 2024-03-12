@@ -38,5 +38,15 @@ extension BloodPressure {
     public var foodType: String? {
         metadata?[.foodType]
     }
+
+    /// The associated systolic blood pressure sample
+    public var systolic: BloodPressureSystolic? {
+        first()
+    }
+
+    /// The associated diastolic blood pressure sample
+    public var diastolic: BloodPressureDiastolic? {
+        first()
+    }
 }
 
