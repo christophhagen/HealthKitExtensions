@@ -52,10 +52,10 @@ extension HKHealthStore {
      Asynchronously requests permission to save and read the specified data types.
 
      - Parameter typesToShare: A set containing the data types you want to share. 
-     This set can contain any concrete subclass of the ``HKSampleContainer`` class.
+     This set can contain any concrete subclass of the ``HKSampleTypeContainer`` class.
      If the user grants permission, your app can create and save these data types to the HealthKit store.
      - Parameter typesToRead: A set containing the data types you want to read. 
-     This set can contain any concrete subclass of the ``HKObjectContainer`` class.
+     This set can contain any concrete subclass of the ``HKObjectTypeContainer`` class.
      If the user grants permission, your app can read these data types from the HealthKit store.
 
      HealthKit performs these requests asynchronously. 
@@ -83,7 +83,7 @@ extension HKHealthStore {
      After users have set the permissions for your app, they can always change them using either the Settings or the Health app.
      Your app appears in the Health app’s Sources tab, even if the user didn’t allow permission to read or share data.
      */
-    public func requestAuthorization(toShare typesToShare: [HKSampleContainer.Type], read typesToRead: [HKObjectContainer.Type]) async throws {
+    public func requestAuthorization(toShare typesToShare: [HKSampleTypeContainer.Type], read typesToRead: [HKObjectTypeContainer.Type]) async throws {
         let writableTypes = typesToShare.map { $0.sampleType }
         let readableTypes = typesToRead.map { $0.objectType }
         try await requestAuthorization(toShare: Set(writableTypes), read: Set(readableTypes))
@@ -93,10 +93,10 @@ extension HKHealthStore {
      Asynchronously requests permission to save and read the specified data types.
 
      - Parameter typesToShare: A list containing the data types you want to share.
-     This set can contain any concrete subclass of the ``HKSampleContainer`` class.
+     This set can contain any concrete subclass of the ``HKSampleTypeContainer`` class.
      If the user grants permission, your app can create and save these data types to the HealthKit store.
      - Parameter typesToRead: A list containing the data types you want to read.
-     This set can contain any concrete subclass of the ``HKObjectContainer`` class.
+     This set can contain any concrete subclass of the ``HKObjectTypeContainer`` class.
      If the user grants permission, your app can read these data types from the HealthKit store.
 
      HealthKit performs these requests asynchronously.
@@ -124,7 +124,7 @@ extension HKHealthStore {
      After users have set the permissions for your app, they can always change them using either the Settings or the Health app.
      Your app appears in the Health app’s Sources tab, even if the user didn’t allow permission to read or share data.
      */
-    public func requestAuthorization(toShare typesToShare: HKSampleContainer.Type..., read typesToRead: HKObjectContainer.Type...) async throws {
+    public func requestAuthorization(toShare typesToShare: HKSampleTypeContainer.Type..., read typesToRead: HKObjectTypeContainer.Type...) async throws {
         try await requestAuthorization(toShare: typesToShare, read: typesToRead)
     }
 
@@ -174,10 +174,10 @@ extension HKHealthStore {
      If your app is given share permission but not read permission, you see only the data that your app has written to the store.
      Data from other sources remains hidden.
 
-     - Parameter type: The type of data. This can be any concrete subclass of the ``HKObjectContainer`` protocol.
+     - Parameter type: The type of data. This can be any concrete subclass of the ``HKObjectTypeContainer`` protocol.
      - Returns: A value indicating the app’s authorization status for this type. For a list of possible values, see ``HKAuthorizationStatus``.
      */
-    public func authorizationStatus(for type: HKObjectContainer.Type) -> HKAuthorizationStatus {
+    public func authorizationStatus(for type: HKObjectTypeContainer.Type) -> HKAuthorizationStatus {
         authorizationStatus(for: type.objectType)
     }
 }

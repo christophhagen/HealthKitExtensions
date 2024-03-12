@@ -261,6 +261,7 @@ final class HealthKitExtensionsTests: XCTestCase {
         try await store.requestAuthorization(toShare: HKCorrelationType.writableTypes, read: HKCorrelationType.readableTypes)
         try await store.requestAuthorization(toShare: HKCategoryType.writableTypes, read: HKCategoryType.readableTypes)
 
+        try await store.requestAuthorization(toShare: HKWorkout.self, read: HKWorkout.self)
         _ = store.authorizationStatus(for: SexualActivity.self)
     }
 

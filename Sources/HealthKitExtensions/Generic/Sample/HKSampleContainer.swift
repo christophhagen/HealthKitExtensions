@@ -1,13 +1,11 @@
 import Foundation
 import HealthKit
 
-public protocol HKSampleContainer: HKObjectContainer {
+public protocol HKSampleContainer: HKSampleTypeContainer, HKObjectContainer {
 
     var sample: HKSample { get }
 
     init(sample: HKSample)
-
-    static var sampleType: HKSampleType { get }
 }
 
 extension HKSampleContainer {
@@ -23,6 +21,4 @@ extension HKSampleContainer {
     public init(object: HKObject) {
         self.init(sample: object as! HKSample)
     }
-
-    public var sampleType: HKSampleType { Self.sampleType }
 }

@@ -1,13 +1,11 @@
 import Foundation
 import HealthKit
 
-public protocol HKObjectContainer {
+public protocol HKObjectContainer: HKObjectTypeContainer {
 
     var object: HKObject { get }
 
     init(object: HKObject)
-
-    static var objectType: HKObjectType { get }
 }
 
 extension HKObjectContainer {
@@ -32,6 +30,4 @@ extension HKObjectContainer {
     public var cleanMetadata: [String : Any] {
         metadata?.excluding(key: .externalUUID) ?? [:]
     }
-    
-    public var objectType: HKObjectType { Self.objectType }
 }
