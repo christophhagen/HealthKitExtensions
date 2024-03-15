@@ -5,9 +5,9 @@ This includes:
 
 - Dedicated types for all sample types
 - Automatic unit conversions and metadata handling
-- Typed reading and saving functions on `HKHealthStore`
+- A wrapper around `HKHealthStore` for easier querying and saving
 
-## Examples
+## Samples
 
 ### Creating samples
 
@@ -109,12 +109,24 @@ metadata[.menstrualCycleStart] = true // Sets HKMetadataKeyMenstrualCycleStart
 let cycleStart: Bool = metadata[.menstrualCycleStart]
 ```
 
+## Queries
+
+Interacting with the `HKHealthStore` can be simplified by wrapping it in a `HealthStore`:
+
+```swift
+let store = HealthStore(wrapping: HKHealthStore())
+```
+
+It's then possible to use all the convenience functions on `HealthStore`, or (for complex queries) just use the `store: HKHealthStore` property as oine normally would.
+
+The `HealthStore` functions make a lot of use of `async`/`await` instead of completion handlers, and use the convenience sample types described above.
+
 ### Requesting permissions
 
 Before saving or reading samples from HealthKit, the permissions must be obtained:
 
 ```swift
-try await HKHealthStore().requestAuthorization(
+try await store.requestAuthorization(
     toShare: Vomiting.self, SoreThroat.self,
     read: SkippedHeartbeat.self, SleepChanges.self)
 ```
@@ -132,16 +144,45 @@ There are function overloads to directly pass objects to the health store:
 
 ```swift
 let sample = SexualActivity(...)
-try await HKHealthStore().save(sample)
+try await store.save(sample)
 ```
 
-### Reading from the health store
+### Reading samples
 
-There are additional functions for `HKHealthStore` to directly retrieve typed objects for quantities, category samples and correlations:
+There are functions to directly retrieve typed objects for quantities, category samples and correlations:
 
 ```swift
-let predicate = HKQuery.predicateForSamples(withStart: Date.now, end: Date.now, options: [])
-let samples: [Vo2Max] = try await HKHealthStore().read(
-    predicate: predicate,
-    sortDescriptors: [.init(\.startDate, order: .reverse)])
+let samples: [Vo2Max] = try await store.read(
+    from: Date.distantPast,
+    to: Date.now,
+    sortedBy: .ascendingStartDate,
+    limitedTo: 100)
+```
+
+### Workouts 
+
+```swift
+let runs = try await store.read(
+    activityType: .running,
+    from: Date.distantPast,
+    to: Date.now,
+    sortedBy: .ascendingStartDate,
+    limitedTo: 100)
+```
+
+### Workout samples
+
+```swift
+let workout: HKWorkout = runs.first!
+let heartRates: [HeartRate] = try await store
+    .samples(associatedWith: workout)
+```
+
+The function automatically queries for [condensed samples](https://developer.apple.com/documentation/healthkit/workouts_and_activity_rings/accessing_condensed_workout_samples), and returns all samples at once.
+
+### Workout route and locations
+
+```swift
+let route = try store.route(associatedWith: workout)
+let locations = try store.locations(associatedWith: route!)
 ```
