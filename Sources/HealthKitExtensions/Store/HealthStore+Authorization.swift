@@ -228,7 +228,7 @@ extension HealthStore {
 
      - Returns: `true` if HealthKit is available; otherwise, `false`.
      */
-    static func isHealthDataAvailable() -> Bool {
+    public static func isHealthDataAvailable() -> Bool {
         HKHealthStore.isHealthDataAvailable()
     }
 
