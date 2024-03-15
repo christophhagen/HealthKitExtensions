@@ -6,7 +6,7 @@ import HealthKit
  */
 public struct BloodPressure: HKCorrelationContainer {
 
-    public static let correlationType: HKCorrelationTypeIdentifier = .bloodPressure
+    public static let correlationTypeIdentifier: HKCorrelationTypeIdentifier = .bloodPressure
 
     public let correlation: HKCorrelation
 

@@ -8,7 +8,7 @@ import HealthKit
  */
 public struct Food: HKCorrelationContainer {
 
-    public static let correlationType: HKCorrelationTypeIdentifier = .food
+    public static let correlationTypeIdentifier: HKCorrelationTypeIdentifier = .food
 
     public let correlation: HKCorrelation
 

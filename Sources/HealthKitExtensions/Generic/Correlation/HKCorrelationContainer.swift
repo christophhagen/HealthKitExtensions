@@ -3,7 +3,7 @@ import HealthKit
 
 public protocol HKCorrelationContainer: HKSampleContainer {
 
-    static var correlationType: HKCorrelationTypeIdentifier { get }
+    static var correlationTypeIdentifier: HKCorrelationTypeIdentifier { get }
 
     var correlation: HKCorrelation { get }
 
@@ -12,13 +12,13 @@ public protocol HKCorrelationContainer: HKSampleContainer {
 
 extension HKCorrelationContainer {
 
-    public static var correlationType: HKCorrelationType { .init(Self.correlationType) }
+    public static var correlationType: HKCorrelationType { .init(Self.correlationTypeIdentifier) }
 
     public var correlationType: HKCorrelationType { Self.correlationType }
 
     public init(start: Date, end: Date, objects: Set<HKSample>, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         self.init(correlation: .init(
-            type: .init(Self.correlationType),
+            type: .init(Self.correlationTypeIdentifier),
             start: start,
             end: end, 
             objects: objects,
