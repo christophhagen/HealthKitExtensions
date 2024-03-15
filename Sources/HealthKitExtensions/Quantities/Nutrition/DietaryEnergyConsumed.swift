@@ -12,8 +12,8 @@ public struct DietaryEnergyConsumed: HKDietaryQuantity {
 
     public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryEnergyConsumed
 
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
+    /// kcal
+    public static let defaultUnit: HKUnit = .kilocalorie()
 
     public let cumulativeQuantitySample: HKCumulativeQuantitySample
 

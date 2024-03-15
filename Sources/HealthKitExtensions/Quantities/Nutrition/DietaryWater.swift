@@ -12,8 +12,8 @@ public struct DietaryWater: HKDietaryQuantity {
 
     public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .dietaryWater
 
-    /// gram
-    public static let defaultUnit: HKUnit = .gram()
+    /// mL
+    public static let defaultUnit: HKUnit = .literUnit(with: .milli)
 
     public let cumulativeQuantitySample: HKCumulativeQuantitySample
 
