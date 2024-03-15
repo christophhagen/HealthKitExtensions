@@ -138,6 +138,14 @@ To check the authorization status, there are also overloads:
 let status = store.authorizationStatus(for: SexualActivity.self)
 ```
 
+### User characteristics
+
+All user characteristic functions of `HKHealthStore` have been mapped to `HealthStore`, but directly returning the value instead of the object.
+
+```swift
+let sex: HKBiologicalSex = try store.biologicalSex() 
+```
+
 ### Saving to the health store
 
 There are function overloads to directly pass objects to the health store:
