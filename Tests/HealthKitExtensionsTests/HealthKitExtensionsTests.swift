@@ -6,9 +6,32 @@ final class HealthKitExtensionsTests: XCTestCase {
 
     let now = Date.now
 
-    @available(iOS 16.0, watchOS 9.0, *)
-    func testAllTypes() async throws {
-        let categorySamples: [HKCategorySampleContainer] = [
+    private var expectedErrorWhenAccessingHealth: HKError.Code {
+        if HealthStore.isHealthDataAvailable() {
+            return .errorAuthorizationDenied
+        } else {
+            return .errorHealthDataUnavailable
+        }
+    }
+
+    func testCreateAllCategoriesAndFailSaving() async throws {
+        // Construct additional types above iOS 16
+        let iOS16Samples: [HKCategorySampleContainer] = {
+            if #available(iOS 16.0, *) {
+                return [
+                    InfrequentMenstrualCycles(start: now, end: now),
+                    PersistentIntermenstrualBleeding(start: now, end: now),
+                    Pregnancy(start: now, end: now),
+                    PregnancyTestResult(value: .positive, start: now, end: now),
+                    ProlongedMenstrualPeriods(start: now, end: now),
+
+                ]
+            } else {
+                return []
+            }
+        }()
+        
+        let categorySamples: [HKCategorySampleContainer] = iOS16Samples + [
             AppleStandHour(value: .stood, start: now, end: now),
             EnvironmentalAudioExposureEvent(value: .momentaryLimit, start: now, end: now),
             HeadphoneAudioExposureEvent(value: .sevenDayLimit, start: now, end: now),
@@ -22,17 +45,12 @@ final class HealthKitExtensionsTests: XCTestCase {
             ToothbrushingEvent(start: now, end: now),
             CervicalMucusQuality(value: .creamy, start: now, end: now),
             Contraceptive(value: .implant, start: now, end: now),
-            InfrequentMenstrualCycles(start: now, end: now),
             IntermenstrualBleeding(start: now, end: now),
             Lactation(start: now, end: now),
             MenstrualFlow(value: .heavy, cycleStart: true, start: now, end: now),
             OvulationTestResult(value: .negative, start: now, end: now),
-            PersistentIntermenstrualBleeding(start: now, end: now),
-            Pregnancy(start: now, end: now),
-            PregnancyTestResult(value: .positive, start: now, end: now),
-            ProlongedMenstrualPeriods(start: now, end: now),
             SexualActivity(protectionUsed: true, start: now, end: now),
-            SleepAnalysis(value: .asleepREM, start: now, end: now),
+            SleepAnalysis(value: .inBed, start: now, end: now),
             AbdominalCramps(value: .moderate, start: now, end: now),
             Acne(value: .moderate, start: now, end: now),
             AppetiteChanges(value: .decreased, start: now, end: now),
@@ -74,14 +92,21 @@ final class HealthKitExtensionsTests: XCTestCase {
             Wheezing(value: .moderate, start: now, end: now),
         ]
 
-        let store = HKHealthStore()
+        let store = HealthStore()
 
-        try await store.requestAuthorization(toShare: [Wheezing.self], read: [SleepChanges.self])
-        try await store.requestAuthorization(
-            toShare: Vomiting.self, SoreThroat.self,
-            read: SkippedHeartbeat.self, SleepChanges.self)
+        // Don't actually request permission, it would crash due to missing usage description
+        // try store.requestAuthorization(
+        //     toShare: <#T##[any HKSampleTypeContainer.Type]#>,
+        //     read: <#T##[any HKObjectTypeContainer.Type]#>)
 
-        try await store.save(categorySamples)
+        do {
+            try await store.save(categorySamples)
+            XCTFail("Expected saving to fail due to missing permissions")
+        } catch let error as HKError {
+            XCTAssertEqual(error.code, expectedErrorWhenAccessingHealth)
+        } catch {
+            XCTFail("Unexpected error saving samples")
+        }
     }
 
     func testExternalUUID() throws {
@@ -118,21 +143,46 @@ final class HealthKitExtensionsTests: XCTestCase {
         }
     }
 
-    @available(iOS 16.0, watchOS 9.0, *)
-    func testQuantities() {
+    func testQuantityInitializer() {
         let temperature = 36.0 // °C
 
-        let sample = AppleSleepingWristTemperature(value: temperature, start: now, end: now)
-        let sample2 = AppleSleepingWristTemperature(quantity: .init(unit: .degreeFahrenheit(), doubleValue: 96.8), start: now, end: now, uuid: .init())
+        let sample = BodyTemperature(value: temperature, start: now, end: now)
+        let sample2 = BodyTemperature(
+            quantity: .init(unit: .degreeFahrenheit(), doubleValue: 96.8),
+            start: now, end: now, uuid: .init())
 
         XCTAssertLessThan(abs(sample.value - sample2.value), 0.001)
     }
 
-    @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
-    func makeAllQuantities() {
+    func testMakeAllQuantities() {
+        if #available(iOS 16.0, *) {
+            let _: [HKQuantitySampleContainer] = [
+                AppleSleepingWristTemperature(value: 37.0, start: now, end: now),
+                RunningPower(value: 1.0, start: now, end: now),
+                RunningSpeed(value: 1.0, start: now, end: now),
+                UnderwaterDepth(value: 1.0, start: now, end: now),
+                AtrialFibrillationBurden(value: 1.0, start: now, end: now),
+                EnvironmentalSoundReduction(value: 1.0, start: now, end: now),
+                HeartRateRecoveryOneMinute(value: 1.0, start: now, end: now),
+                RunningGroundContactTime(value: 1.0, start: now, end: now),
+                RunningStrideLength(value: 1.0, start: now, end: now),
+                RunningVerticalOscillation(value: 1.0, start: now, end: now),
+                WaterTemperature(value: 1.0, start: now, end: now)
+            ]
+        }
+        if #available(iOS 17.0, watchOS 10.0, macOS 14.0, *) {
+            let _: [HKQuantitySampleContainer] = [
+                CyclingFunctionalThresholdPower(value: 1.0, start: now, end: now),
+                CyclingPower(value: 1.0, start: now, end: now),
+                CyclingSpeed(value: 1.0, start: now, end: now),
+                CyclingCadence(value: 1.0, start: now, end: now),
+                PhysicalEffort(value: 1.0, start: now, end: now),
+                TimeInDaylight(value: 1.0, start: now, end: now)
+            ]
+        }
+
         let _: [HKQuantitySampleContainer] = [
             // Body
-            AppleSleepingWristTemperature(value: 37.0, start: now, end: now),
             BodyFatPercentage(value: 10.0, start: now, end: now),
             BodyMass(value: 80.0, start: now, end: now),
             BodyMassIndex(value: 25.0, start: now, end: now),
@@ -146,10 +196,6 @@ final class HealthKitExtensionsTests: XCTestCase {
             AppleMoveTime(value: 1.0, start: now, end: now),
             AppleStandTime(value: 1.0, start: now, end: now),
             BasalEnergyBurned(value: 1.0, start: now, end: now),
-            CyclingCadence(value: 1.0, start: now, end: now),
-            CyclingFunctionalThresholdPower(value: 1.0, start: now, end: now),
-            CyclingPower(value: 1.0, start: now, end: now),
-            CyclingSpeed(value: 1.0, start: now, end: now),
             DistanceCycling(value: 1.0, start: now, end: now),
             DistanceDownhillSnowSports(value: 1.0, start: now, end: now),
             DistanceSwimming(value: 1.0, start: now, end: now),
@@ -157,21 +203,14 @@ final class HealthKitExtensionsTests: XCTestCase {
             DistanceWheelchair(value: 1.0, start: now, end: now),
             FlightsClimbed(value: 1.0, start: now, end: now),
             NikeFuel(value: 1.0, start: now, end: now),
-            PhysicalEffort(value: 1.0, start: now, end: now),
             PushCount(value: 1.0, start: now, end: now),
-            RunningPower(value: 1.0, start: now, end: now),
-            RunningSpeed(value: 1.0, start: now, end: now),
             StepCount(value: 1.0, start: now, end: now),
             SwimmingStrokeCount(value: 1.0, start: now, end: now),
-            UnderwaterDepth(value: 1.0, start: now, end: now),
             // Hearing Health
-            EnvironmentalAudioExposure(value: 1.0, start: now, end: now),
-            EnvironmentalSoundReduction(value: 1.0, start: now, end: now),
-            HeadphoneAudioExposure(value: 1.0, start: now, end: now),
+            EnvironmentalAudioExposure(value: 1.0, start: now, end: now.addingTimeInterval(1.0)),
+            HeadphoneAudioExposure(value: 1.0, start: now, end: now.addingTimeInterval(1.0)),
             // Heart
-            AtrialFibrillationBurden(value: 1.0, start: now, end: now),
             HeartRate(countsPerSecond: 1.0, motionContext: .sedentary, start: now, end: now),
-            HeartRateRecoveryOneMinute(value: 1.0, start: now, end: now),
             HeartRateVariabilitySDNN(value: 1.0, start: now, end: now),
             PeripheralPerfusionIndex(value: 1.0, start: now, end: now),
             RestingHeartRate(value: 1.0, start: now, end: now),
@@ -179,9 +218,6 @@ final class HealthKitExtensionsTests: XCTestCase {
             WalkingHeartRateAverage(value: 1.0, start: now, end: now),
             // Mobility
             AppleWalkingSteadiness(value: 1.0, start: now, end: now),
-            RunningGroundContactTime(value: 1.0, start: now, end: now),
-            RunningStrideLength(value: 1.0, start: now, end: now),
-            RunningVerticalOscillation(value: 1.0, start: now, end: now),
             SixMinuteWalkTestDistance(value: 1.0, start: now, end: now),
             StairAscentSpeed(value: 1.0, start: now, end: now),
             StairDescentSpeed(value: 1.0, start: now, end: now),
@@ -233,12 +269,10 @@ final class HealthKitExtensionsTests: XCTestCase {
             BloodAlcoholContent(value: 1.0, start: now, end: now),
             BloodPressureDiastolic(value: 1.0, start: now, end: now),
             BloodPressureSystolic(value: 1.0, start: now, end: now),
-            InsulinDelivery(value: 1.0, start: now, end: now),
+            InsulinDelivery(amount: 1.0, reason: .basal, start: now, end: now),
             NumberOfAlcoholicBeverages(value: 1.0, start: now, end: now),
             NumberOfTimesFallen(value: 1.0, start: now, end: now),
-            TimeInDaylight(value: 1.0, start: now, end: now),
             UvExposure(value: 1.0, start: now, end: now),
-            WaterTemperature(value: 1.0, start: now, end: now),
             // Reproductive Health
             BasalBodyTemperature(value: 1.0, start: now, end: now),
             // Respiratory
@@ -255,22 +289,31 @@ final class HealthKitExtensionsTests: XCTestCase {
     }
 
     func testRequestPermissionForAllTypes() async throws {
-        let store = HKHealthStore()
+        // Don't request permissions, it will fail due to missing entitlements
+        /*
+        let store = HealthStore()
+        if HealthStore.isHealthDataAvailable() {
+            try await store.requestAuthorization(toShare: HKQuantityType.writableTypes, read: HKQuantityType.readableTypes)
+            try await store.requestAuthorization(toShare: HKCorrelationType.writableTypes, read: HKCorrelationType.readableTypes)
+            try await store.requestAuthorization(toShare: HKCategoryType.writableTypes, read: HKCategoryType.readableTypes)
 
-        try await store.requestAuthorization(toShare: HKQuantityType.writableTypes, read: HKQuantityType.readableTypes)
-        try await store.requestAuthorization(toShare: HKCorrelationType.writableTypes, read: HKCorrelationType.readableTypes)
-        try await store.requestAuthorization(toShare: HKCategoryType.writableTypes, read: HKCategoryType.readableTypes)
-
-        try await store.requestAuthorization(toShare: HKWorkout.self, read: HKWorkout.self)
-        _ = store.authorizationStatus(for: SexualActivity.self)
+            try await store.requestAuthorization(toShare: HKWorkout.self, read: HKWorkout.self)
+            _ = store.authorizationStatus(for: SexualActivity.self)
+        }
+         */
     }
 
     @available(iOS 15.4, *)
     func testReadData() async throws {
-        let store = HKHealthStore()
-        let predicate = HKQuery.predicateForSamples(withStart: now, end: now, options: [])
-        let _: [Vo2Max] = try await store.read(
-            predicate: predicate,
-            sortDescriptors: [.init(\.startDate, order: .reverse)])
+        let store = HealthStore()
+        do {
+            let _: [Vo2Max] = try await store.read(from: now, to: now, sortedBy: .descendingStartDate)
+            XCTFail()
+        } catch let error as HKError {
+            XCTAssertEqual(error.code, expectedErrorWhenAccessingHealth)
+        } catch {
+            XCTFail()
+        }
+
     }
 }
