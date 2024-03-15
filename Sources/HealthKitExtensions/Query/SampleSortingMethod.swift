@@ -53,3 +53,22 @@ public enum SampleSortingMethod {
         .init(sortingKey.keyPath(), order: order)
     }
 }
+
+extension Sequence where Element: HKSample {
+
+    /**
+     Sort the samples by the given order.
+     */
+    public func sorted(by sortMethod: SampleSortingMethod) -> [Element] {
+        switch sortMethod {
+        case .ascendingStartDate:
+            return sorted { $0.startDate < $1.startDate }
+        case .descendingStartDate:
+            return sorted { $0.startDate > $1.startDate }
+        case .ascendingEndDate:
+            return sorted { $0.endDate < $1.endDate }
+        case .descendingEndDate:
+            return sorted { $0.endDate > $1.endDate }
+        }
+    }
+}
