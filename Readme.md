@@ -160,7 +160,7 @@ try await store.save(sample)
 There are functions to directly retrieve typed objects for quantities, category samples and correlations:
 
 ```swift
-let samples: [Vo2Max] = try await store.read(
+let samples: [Vo2Max] = try await store.samples(
     from: Date.distantPast,
     to: Date.now,
     sortedBy: .ascendingStartDate,

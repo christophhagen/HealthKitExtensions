@@ -59,10 +59,10 @@ extension HealthStore {
      - Returns: An array containing the samples found by the query
      */
     @available(iOS 15.4, *)
-    public func read<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKQuantitySampleContainer {
+    public func samples<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKQuantitySampleContainer {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
         let sorting = sortingMethod.map { [$0.sampleSortDescriptor(sorting: HKQuantitySample.self)] }
-        return try await read(
+        return try await samples(
             predicate: predicate,
             sortDescriptors: sorting ?? [],
             limit: limit)
@@ -72,7 +72,7 @@ extension HealthStore {
      Read quantity samples.
      */
     @available(iOS 15.4, *)
-    public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKQuantitySample>] = [], limit: Int? = nil) async throws -> [T] where T: HKQuantitySampleContainer {
+    public func samples<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKQuantitySample>] = [], limit: Int? = nil) async throws -> [T] where T: HKQuantitySampleContainer {
 
         let descriptor = HKSampleQueryDescriptor(
             predicates: [.quantitySample(type: T.quantitySampleType, predicate: predicate)],
@@ -94,10 +94,10 @@ extension HealthStore {
      - Returns: An array containing the samples found by the query
      */
     @available(iOS 15.4, *)
-    public func read<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKCorrelationContainer {
+    public func samples<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKCorrelationContainer {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
         let sorting = sortingMethod.map { [$0.sampleSortDescriptor(sorting: HKCorrelation.self)] }
-        return try await read(
+        return try await samples(
             predicate: predicate,
             sortDescriptors: sorting ?? [],
             limit: limit)
@@ -107,7 +107,7 @@ extension HealthStore {
      Read correlation samples.
      */
     @available(iOS 15.4, *)
-    public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCorrelation>] = [], limit: Int? = nil) async throws -> [T] where T: HKCorrelationContainer {
+    public func samples<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCorrelation>] = [], limit: Int? = nil) async throws -> [T] where T: HKCorrelationContainer {
 
         let descriptor = HKSampleQueryDescriptor(
             predicates: [.correlation(type: T.correlationType, predicate: predicate)],
@@ -129,10 +129,10 @@ extension HealthStore {
      - Returns: An array containing the samples found by the query
      */
     @available(iOS 15.4, *)
-    public func read<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKCategorySampleContainer {
+    public func samples<T>(from start: Date = .distantPast, to end: Date = .distantFuture, sortedBy sortingMethod: SampleSortingMethod? = nil, limitedTo limit: Int? = nil) async throws -> [T] where T: HKCategorySampleContainer {
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: [])
         let sorting = sortingMethod.map { [$0.sampleSortDescriptor(sorting: HKCategorySample.self)] }
-        return try await read(
+        return try await samples(
             predicate: predicate,
             sortDescriptors: sorting ?? [],
             limit: limit)
@@ -142,7 +142,7 @@ extension HealthStore {
      Read category samples.
      */
     @available(iOS 15.4, *)
-    public func read<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCategorySample>] = [], limit: Int? = nil) async throws -> [T] where T: HKCategorySampleContainer {
+    public func samples<T>(predicate: NSPredicate? = nil, sortDescriptors: [SortDescriptor<HKCategorySample>] = [], limit: Int? = nil) async throws -> [T] where T: HKCategorySampleContainer {
 
         let descriptor = HKSampleQueryDescriptor(
             predicates: [.categorySample(type: T.categorySampleType, predicate: predicate)],
