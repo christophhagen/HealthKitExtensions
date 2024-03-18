@@ -10,13 +10,14 @@ import HealthKit
 
  Active energy samples use energy units (described in ``HKUnit``) and measure cumulative values (described in ``HKQuantityAggregationStyle``).
 
- The default unit is Joule.
+ The default unit is `kcal`.
  */
 public struct ActiveEnergyBurned: HKCumulativeQuantity {
 
     public static let quantityTypeIdentifier: HKQuantityTypeIdentifier = .activeEnergyBurned
 
-    public static var defaultUnit: HKUnit = .joule()
+    // `kcal`
+    public static var defaultUnit: HKUnit = .kilocalorie()
 
     public let cumulativeQuantitySample: HKCumulativeQuantitySample
 
