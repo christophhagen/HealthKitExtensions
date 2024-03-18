@@ -307,7 +307,7 @@ final class HealthKitExtensionsTests: XCTestCase {
     func testReadData() async throws {
         let store = HealthStore()
         do {
-            let _: [Vo2Max] = try await store.read(from: now, to: now, sortedBy: .descendingStartDate)
+            let _: [Vo2Max] = try await store.samples(from: now, to: now, sortedBy: .descendingStartDate)
             XCTFail()
         } catch let error as HKError {
             XCTAssertEqual(error.code, expectedErrorWhenAccessingHealth)
@@ -315,5 +315,96 @@ final class HealthKitExtensionsTests: XCTestCase {
             XCTFail()
         }
 
+    }
+
+    private func compare(_ key: HKMetadataKey, _ value: String) {
+        XCTAssertEqual(key.rawValue, value)
+    }
+
+
+    @available(iOS 17.0, macOS 14.0, watchOS 10.0, *)
+    func testMetadataKeysIOS17() throws {
+        compare(.activityType, HKMetadataKeyActivityType)
+        compare(.cyclingFunctionalThresholdPowerTestType, HKMetadataKeyCyclingFunctionalThresholdPowerTestType)
+        compare(.fitnessPlusSession, HKMetadataKeyAppleFitnessPlusSession)
+        compare(.maximumLightIntensity, HKMetadataKeyMaximumLightIntensity)
+        compare(.physicalEffortEstimationType, HKMetadataKeyPhysicalEffortEstimationType)
+        compare(.waterSalinity, HKMetadataKeyWaterSalinity)
+    }
+
+    @available(iOS 16.4, macOS 13.3, watchOS 9.4, *)
+    func testMetadataKeysIOS16_4() throws {
+        compare(.headphoneGain, HKMetadataKeyHeadphoneGain)
+
+    }
+
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    func testMetadataKeysIOS16() throws {
+        compare(.glassesPrescriptionDescription, HKMetadataKeyGlassesPrescriptionDescription)
+        compare(.heartRateRecoveryActivityDuration, HKMetadataKeyHeartRateRecoveryActivityDuration)
+        compare(.heartRateRecoveryActivityType, HKMetadataKeyHeartRateRecoveryActivityType)
+        compare(.heartRateRecoveryMaxObservedRecoveryHeartRate, HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate)
+        compare(.heartRateRecoveryTestType, HKMetadataKeyHeartRateRecoveryTestType)
+        compare(.quantityClampedToLowerBound, HKMetadataKeyQuantityClampedToLowerBound)
+        compare(.quantityClampedToUpperBound, HKMetadataKeyQuantityClampedToUpperBound)
+        compare(.sessionEstimate, HKMetadataKeySessionEstimate)
+        compare(.swoflScore, HKMetadataKeySWOLFScore)
+        compare(.userMotionContext, HKMetadataKeyUserMotionContext)
+    }
+
+    func testMetadataKeys() throws {
+        compare(.algorithmVersion, HKMetadataKeyAlgorithmVersion)
+        compare(.alpineSlopeGrade, HKMetadataKeyAlpineSlopeGrade)
+        compare(.appleDeviceCalibrated, HKMetadataKeyAppleDeviceCalibrated)
+        compare(.appleECGAlgorithmVersion, HKMetadataKeyAppleECGAlgorithmVersion)
+        compare(.audioExposureDuration, HKMetadataKeyAudioExposureDuration)
+        compare(.audioExposureLevel, HKMetadataKeyAudioExposureLevel)
+        compare(.averageMETs, HKMetadataKeyAverageMETs)
+        compare(.averageSpeed, HKMetadataKeyAverageSpeed)
+        compare(.barometricPressure, HKMetadataKeyBarometricPressure)
+        compare(.bloodGlucoseMealTime, HKMetadataKeyBloodGlucoseMealTime)
+        compare(.bodyTemperatureSensorLocation, HKMetadataKeyBodyTemperatureSensorLocation)
+        compare(.coachedWorkout, HKMetadataKeyCoachedWorkout)
+        compare(.crossTrainerDistance, HKMetadataKeyCrossTrainerDistance)
+        compare(.dateOfEarliestDataUsedForEstimate, HKMetadataKeyDateOfEarliestDataUsedForEstimate)
+        compare(.deviceManufacturerName, HKMetadataKeyDeviceManufacturerName)
+        compare(.deviceName, HKMetadataKeyDeviceName)
+        compare(.devicePlacementSide, HKMetadataKeyDevicePlacementSide)
+        compare(.deviceSerialNumber, HKMetadataKeyDeviceSerialNumber)
+        compare(.digitalSignature, HKMetadataKeyDigitalSignature)
+        compare(.elevationAscended, HKMetadataKeyElevationAscended)
+        compare(.externalUUID, HKMetadataKeyExternalUUID)
+        compare(.fitnessMachineDuration, HKMetadataKeyFitnessMachineDuration)
+        compare(.foodType, HKMetadataKeyFoodType)
+        compare(.groupFitness, HKMetadataKeyGroupFitness)
+        compare(.heartRateEventThreshold, HKMetadataKeyHeartRateEventThreshold)
+        compare(.heartRateMotionContext, HKMetadataKeyHeartRateMotionContext)
+        compare(.heartRateSensorLocation, HKMetadataKeyHeartRateSensorLocation)
+        compare(.indoorBikeDistance, HKMetadataKeyIndoorBikeDistance)
+        compare(.indoorWorkout, HKMetadataKeyIndoorWorkout)
+        compare(.insulinDeliveryReason, HKMetadataKeyInsulinDeliveryReason)
+        compare(.keySyncVersion, HKMetadataKeySyncVersion)
+        compare(.lowCardioFitnessEventThreshold, HKMetadataKeyLowCardioFitnessEventThreshold)
+        compare(.lapLength, HKMetadataKeyLapLength)
+        compare(.maximumSpeed, HKMetadataKeyMaximumSpeed)
+        compare(.menstrualCycleStart, HKMetadataKeyMenstrualCycleStart)
+        compare(.referenceRangeLowerLimit, HKMetadataKeyReferenceRangeLowerLimit)
+        compare(.referenceRangeUpperLimit, HKMetadataKeyReferenceRangeUpperLimit)
+        compare(.sessionId, "sessionId")
+        compare(.sexualActivityProtectionUsed, HKMetadataKeySexualActivityProtectionUsed)
+        compare(.subIndex, "subIndex")
+        compare(.swimmingLocationType, HKMetadataKeySwimmingLocationType)
+        compare(.swimmingStrokeStyle, HKMetadataKeySwimmingStrokeStyle)
+        compare(.syncIdentifier, HKMetadataKeySyncIdentifier)
+        compare(.timeZone, HKMetadataKeyTimeZone)
+        compare(.udiDeviceIdentifier, HKMetadataKeyUDIDeviceIdentifier)
+        compare(.udiProductionIdentifier, HKMetadataKeyUDIProductionIdentifier)
+        compare(.vO2MaxTestType, HKMetadataKeyVO2MaxTestType)
+        compare(.vo2MaxValue, HKMetadataKeyVO2MaxValue)
+        compare(.wasTakenInLab, HKMetadataKeyWasTakenInLab)
+        compare(.wasUserEntered, HKMetadataKeyWasUserEntered)
+        compare(.weatherHumidity, HKMetadataKeyWeatherHumidity)
+        compare(.weatherTemperature, HKMetadataKeyWeatherTemperature)
+        compare(.workoutBrandName, HKMetadataKeyWorkoutBrandName)
     }
 }
