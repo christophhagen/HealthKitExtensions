@@ -1,6 +1,13 @@
 import Foundation
 import HealthKit
 
+extension HKQuantityType {
+
+    public var defaultUnit: HKUnit? {
+        HKQuantityTypeIdentifier(rawValue: identifier).defaultUnit
+    }
+}
+
 extension HKQuantityTypeIdentifier {
 
     /// The default unit associated with a quanity
