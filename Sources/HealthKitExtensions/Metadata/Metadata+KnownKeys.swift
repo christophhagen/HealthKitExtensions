@@ -325,7 +325,613 @@ extension Metadata {
         set { set(value: newValue?.uuidString, for: .externalUUID) }
     }
 
+    /**
+     The workout duration displayed by a connected GymKit fitness machine.
 
+     Set this key on a workout sample representing exercise on a GymKit fitness machine.
+     Set its value to an ``HKQuantity`` object with a time unit.
+     - String value: `HKFitnessMachineDuration`
+     - HealthKit Constant: ``HKMetadataKeyFitnessMachineDuration``
+     */
+    public var fitnessMachineDuration: HKQuantity? {
+        get { quantity(for: .fitnessMachineDuration) }
+        set { set(quantity: newValue, for: .fitnessMachineDuration) }
+    }
+
+    /**
+     Represents whether or not a workout is a Fitness+ workout.
+
+     - String value: `HKMetadataKeyAppleFitnessPlusSession`
+     - HealthKit Constant: ``HKMetadataKeyAppleFitnessPlusSession``
+     */
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, *)
+    public var fitnessPlusSession: Bool? {
+        get { value(for: .fitnessPlusSession) }
+        set { set(value: newValue, for: .fitnessPlusSession) }
+    }
+
+    /**
+     The type of food that the HealthKit object represents.
+
+     Food objects are usually food samples containing any number of Nutrition Identifiers samples.
+     - String value: `HKFoodType`
+     - HealthKit Constant: ``HKMetadataKeyFoodType``
+     */
+    public var foodType: String? {
+        get { value(for: .foodType) }
+        set { set(value: newValue, for: .foodType) }
+    }
+
+    /**
+     A description of the glasses prescription.
+
+     If a glasses prescription was designed for a particular use, like reading or distance, use this metadata key to describe that use.
+
+     - String value: `HKMetadataKeyGlassesPrescriptionDescription`
+     - HealthKit Constant: ``HKMetadataKeyGlassesPrescriptionDescription``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var glassesPrescriptionDescription: String? {
+        get { value(for: .glassesPrescriptionDescription) }
+        set { set(value: newValue, for: .glassesPrescriptionDescription) }
+    }
+
+    /**
+     A field that indicates whether the workout was performed as part of a group fitness class.
+
+     Set this value to true if the workout was part of a group fitness class; otherwise, set it to false.
+     - String value: `HKMetadataKeyGroupFitness`
+     - HealthKit Constant: ``HKMetadataKeyGroupFitness``
+     */
+    public var groupFitness: Bool? {
+        get { value(for: .groupFitness) }
+        set { set(value: newValue, for: .groupFitness) }
+    }
+
+    /**
+     Represents the headphone gain associated with a Headphone audio exposure event.
+
+     The expected value is an ``HKQuantity`` whose value is the gain associated with the event measured in decibels in A-weighted Sound Pressure Level units.
+     - String value: `HKMetadataKeyHeadphoneGain`
+     - HealthKit Constant: ``HKMetadataKeyHeadphoneGain``
+     */
+    @available(iOS 16.4, macOS 13.3, watchOS 9.4, *)
+    public var headphoneGain: HKQuantity? {
+        get { quantity(for: .headphoneGain) }
+        set { set(quantity: newValue, for: .headphoneGain) }
+    }
+
+    /**
+     A field that records the threshold of high or low heart rate events in beats per minute.
+
+     The value is an ``HKQuantity`` object with count/time units, described in ``HKUnit``.
+     This metadata field is used by ``highHeartRateEvent`` and ``lowHeartRateEvent`` category samples.
+     - Value type: ``Quantity``, unit count/min
+     - String value: `HKHeartRateEventThreshold`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateEventThreshold``
+     */
+    public var heartRateEventThreshold: HKQuantity? {
+        get { quantity(for: .heartRateEventThreshold) }
+        set { set(quantity: newValue, for: .heartRateEventThreshold) }
+    }
+
+    /**
+     The user’s activity level when the heart rate sample was measured.
+
+     - String value: `HKMetadataKeyHeartRateMotionContext`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateMotionContext``
+     */
+    public var heartRateMotionContext: HKHeartRateMotionContext? {
+        get { integerType(for: .heartRateMotionContext) }
+        set { set(int: newValue, for: .heartRateMotionContext) }
+    }
+
+    /**
+     Represents the duration of activity which preceded a Heart Rate Recovery value
+
+     The expected value type is an ``HKQuantity`` object compatible with a time unit.
+     - String value: `HKMetadataKeyHeartRateRecoveryActivityDuration`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryActivityDuration``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var heartRateRecoveryActivityDuration: HKQuantity? {
+        get { quantity(for: .heartRateEventThreshold) }
+        set { set(quantity: newValue, for: .heartRateEventThreshold) }
+    }
+
+    /**
+     Represents the activity which preceded a Heart Rate Recovery value
+
+     The expected value type is an ``NSNumber`` containing a ``HKWorkoutActivityType`` value.
+     - Value type: ``NSNumber``
+     - String value: `HKMetadataKeyHeartRateRecoveryActivityType`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryActivityType``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var heartRateRecoveryActivityType: HKWorkoutActivityType? {
+        get { uintType(for: .heartRateRecoveryActivityType) }
+        set { set(uint: newValue, for: .heartRateRecoveryActivityType) }
+    }
+
+    /**
+     Represents the maximum heart rate observed during the corresponding Heart Rate Recovery sample interval.
+
+     The expected value type is an HKQuantity object compatible with "count/min" unit (eg "BPM").
+     - String value: `HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var heartRateRecoveryMaxObservedRecoveryHeartRate: HKQuantity? {
+        get { quantity(for: .heartRateRecoveryMaxObservedRecoveryHeartRate) }
+        set { set(quantity: newValue, for: .heartRateRecoveryMaxObservedRecoveryHeartRate) }
+    }
+
+    /**
+     The type of test that the source used to calculate a person’s heart-rate recovery.
+
+     Use this metadata field to identify the type of test that the ``HKSource`` used to calculate the value for a ``heartRateRecoveryOneMinute`` sample.
+
+     - String value: `HKMetadataKeyHeartRateRecoveryTestType`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryTestType``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var heartRateRecoveryTestType: HKHeartRateRecoveryTestType? {
+        get { integerType(for: .heartRateRecoveryTestType) }
+        set { set(int: newValue, for: .heartRateRecoveryTestType) }
+    }
+
+    /**
+     The location where a specific heart rate reading was taken.
+
+     - String value: `HKHeartRateSensorLocation`
+     - HealthKit Constant: ``HKMetadataKeyHeartRateSensorLocation``
+     */
+    public var heartRateSensorLocation: HKHeartRateSensorLocation? {
+        get { integerType(for: .heartRateSensorLocation) }
+        set { set(int: newValue, for: .heartRateSensorLocation) }
+    }
+
+    /**
+     The workout distance displayed by a connected GymKit exercise bike.
+
+     Set this field on a workout sample representing exercise on a GymKit exercise bike.
+     Set its value to an ``HKQuantity`` object with a length unit.
+     - Value type: ``HKQuantity``
+     - String value: `HKIndoorBikeDistance`
+     - HealthKit Constant: ``HKMetadataKeyIndoorBikeDistance``
+     */
+    public var indoorBikeDistance: HKQuantity? {
+        get { quantity(for: .indoorBikeDistance) }
+        set { set(quantity: newValue, for: .indoorBikeDistance) }
+    }
+
+    /**
+     Represents whether or not a workout was performed indoors as opposed to outdoors.
+
+     - String value: `HKIndoorWorkout`
+     - HealthKit Constant: ``HKMetadataKeyIndoorWorkout``
+     */
+    public var indoorWorkout: Bool? {
+        get { value(for: .indoorWorkout) }
+        set { set(value: newValue, for: .indoorWorkout) }
+    }
+
+    /**
+     The medical reason for administering insulin.
+
+     This key is required for ``insulinDelivery`` samples.
+     - String value: `HKInsulinDeliveryReason`
+     - HealthKit Constant: ``HKMetadataKeyInsulinDeliveryReason``
+     */
+    public var insulinDeliveryReason: HKInsulinDeliveryReason? {
+        get { integerType(for: .insulinDeliveryReason) }
+        set { set(int: newValue, for: .insulinDeliveryReason) }
+    }
+
+    /**
+     The version number for a piece of data, used when updating or syncing.
+
+     When you save an object to the HealthKit store, the new object replaces any matching objects (existing objects with a matching ``HKMetadataKeySyncIdentifier`` value) with a lower sync version.
+     For more information, see ``HKMetadataKeySyncIdentifier``.
+     - String value: `HKMetadataKeySyncVersion`
+     - HealthKit Constant: ``HKMetadataKeySyncVersion``
+     */
+    public var keySyncVersion: Int? {
+        get { integer(for: .keySyncVersion) }
+        set { set(number: newValue, for: .keySyncVersion) }
+    }
+
+    /**
+     The VO2 max threshold used to categorize low-level cardio fitness events.
+
+     The system sets this key on ``lowCardioFitnessEvent`` samples.
+     It contains the threshold value for the user’s VO2 max measurements.
+     The threshold value varies depending on certain parameters and physical characteristics, such as the user’s age.
+
+     A low-cardio fitness event indicates a period of time when the user’s VO2 max measurements consistently fall below the defined value.
+     The system triggers this event approximately once every four months.
+
+     The value of this key is an ``HKQuantity`` object with a unit of `ml/(kg*min)`.
+     For more information on working with complex units, see [unitMultiplied(by:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615718-unitmultiplied), [unitDivided(by:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615242-unitdivided), and [init(from:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615733-init).
+     - Value type: ``HKQuantity``, unit `ml/(kg*min)`
+     - String value: `HKLowCardioFitnessEventThreshold`
+     - HealthKit Constant: ``HKMetadataKeyLowCardioFitnessEventThreshold``
+     */
+    public var lowCardioFitnessEventThreshold: HKQuantity? {
+        get { quantity(for: .lowCardioFitnessEventThreshold) }
+        set { set(quantity: newValue, for: .lowCardioFitnessEventThreshold) }
+    }
+
+    /**
+     Represents the length of a lap recorded during a workout.
+
+     The expected value type is an ``HKQuantity`` object compatible with a length unit.
+     This key may be set on an ``HKWorkout`` object to represent the length of a lap.
+     - String value: `HKLapLength`
+     - HealthKit Constant: ``HKMetadataKeyLapLength``
+     */
+    public var lapLength: HKQuantity? {
+        get { quantity(for: .lapLength) }
+        set { set(quantity: newValue, for: .lapLength) }
+    }
+
+    /**
+     Represents maximum intensity of light for an outdoor time sample.
+
+     The expected value type is an ``HKQuantity`` expressed in HKUnit Lux.
+     - String value: `HKMetadataKeyMaximumLightIntensity`
+     - HealthKit Constant: ``HKMetadataKeyMaximumLightIntensity``
+     */
+    @available(watchOS 10.0, iOS 17.0, macOS 14.0, *)
+    public var maximumLightIntensity: HKQuantity? {
+        get { quantity(for: .maximumLightIntensity) }
+        set { set(quantity: newValue, for: .maximumLightIntensity) }
+    }
+
+    /**
+     A key that indicates the maximum speed during a workout.
+
+     Set this key on a workout, workout segment, or a quantity sample that represents distance.
+     Set its value to an ``HKQuantity`` object with a length/time unit (for example, m/s).
+     For more information on creating complex units, see [Performing unit math]().
+
+     HealthKit assigns this metadata key to the segments it automatically creates for ``HKWorkoutActivityType.downhillSkiing`` and ``HKWorkoutActivityType.snowboarding`` workout sessions (Apple Watch Series 3 only).
+     - Value type: ``HKQuantity``
+     - String value: `HKMaximumSpeed`
+     - HealthKit Constant: ``HKMetadataKeyMaximumSpeed``
+     */
+    public var maximumSpeed: HKQuantity? {
+        get { quantity(for: .maximumSpeed) }
+        set { set(quantity: newValue, for: .maximumSpeed) }
+    }
+
+    /**
+     A key that indicates whether the sample represents the start of a menstrual cycle.
+     This metadata key is required for ``menstrualFlow`` category samples.
+
+     Set this key’s value to true if the sample represents the start of a menstrual cycle; otherwise, set it to false.
+     - String value: `HKMenstrualCycleStart`
+     - HealthKit Constant: ``HKMetadataKeyMenstrualCycleStart``
+     */
+    public var menstrualCycleStart: Bool? {
+        get { value(for: .menstrualCycleStart) }
+        set { set(value: newValue, for: .menstrualCycleStart) }
+    }
+
+    /**
+     Represents the estimation type used to create the Physical Effort Sample
+
+     - String value: `HKPhysicalEffortEstimationType`
+     - HealthKit Constant: ``HKMetadataKeyPhysicalEffortEstimationType``
+     */
+    @available(watchOS 10.0, iOS 17.0, macOS 14.0, *)
+    public var physicalEffortEstimationType: HKPhysicalEffortEstimationType? {
+        get { integerType(for: .physicalEffortEstimationType) }
+        set { set(int: newValue, for: .physicalEffortEstimationType) }
+    }
+
+    /**
+     Indicates the quantity was clamped to a lower bound.
+
+     - String value: `HKMetadataKeyQuantityClampedToLowerBound`
+     - HealthKit Constant: ``HKMetadataKeyQuantityClampedToLowerBound``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var quantityClampedToLowerBound: Bool? {
+        get { value(for: .quantityClampedToLowerBound) }
+        set { set(value: newValue, for: .quantityClampedToLowerBound) }
+    }
+
+    /**
+     Indicates the quantity was clamped to an upper bound.
+
+     - String value: `HKMetadataKeyQuantityClampedToUpperBound`
+     - HealthKit Constant: ``HKMetadataKeyQuantityClampedToUpperBound``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var quantityClampedToUpperBound: Bool? {
+        get { value(for: .quantityClampedToUpperBound) }
+        set { set(value: newValue, for: .quantityClampedToUpperBound) }
+    }
+
+    /**
+     A key that indicates the lower limit of the reference range for a lab result.
+
+     - String value: `HKReferenceRangeLowerLimit`
+     - HealthKit Constant: ``HKMetadataKeyReferenceRangeLowerLimit``
+     */
+    public var referenceRangeLowerLimit: Double? {
+        get { value(for: .referenceRangeLowerLimit) }
+        set { set(value: newValue, for: .referenceRangeLowerLimit) }
+    }
+
+    /**
+     A key that indicates the upper limit of the reference range for a lab result.
+
+     - String value: `HKReferenceRangeUpperLimit`
+     - HealthKit Constant: ``HKMetadataKeyReferenceRangeUpperLimit``
+     */
+    public var referenceRangeUpperLimit: Double? {
+        get { value(for: .referenceRangeUpperLimit) }
+        set { set(value: newValue, for: .referenceRangeUpperLimit) }
+    }
+
+    /**
+     Represents a per-session estimate prior to longitudinal smoothing applied to the value stored in the associated HKQuantitySample.
+
+     The expected value type is an ``HKQuantity`` object with a unit compatible with the associated ``HKQuantitySample``.
+     - String value: `HKMetadataKeySessionEstimate`
+     - HealthKit Constant: ``HKMetadataKeySessionEstimate``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var sessionEstimate: HKQuantity? {
+        get { quantity(for: .sessionEstimate) }
+        set { set(quantity: newValue, for: .sessionEstimate) }
+    }
+
+    /**
+     - String value: `sessionId`
+     - HealthKit Constant: -
+     */
+    public var sessionId: String? {
+        get { value(for: .sessionId) }
+        set { set(value: newValue, for: .sessionId) }
+    }
+
+    /**
+     A key that indicates whether protection was used during sexual activity.
+     This metadata key can be used with ``sexualActivity`` category samples.
+
+     Set this key’s value to true if protection was used during sexual activity; otherwise, set it to false.
+     - String value: `HKSexualActivityProtectionUsed`
+     - HealthKit Constant: ``HKMetadataKeySexualActivityProtectionUsed``
+     */
+    public var sexualActivityProtectionUsed: Bool? {
+        get { value(for: .sexualActivityProtectionUsed) }
+        set { set(value: newValue, for: .sexualActivityProtectionUsed) }
+    }
+
+    /**
+     - String value: `subIndex`
+     - HealthKit Constant: -
+     */
+    public var subIndex: Int? {
+        get { value(for: .subIndex) }
+        set { set(value: newValue, for: .subIndex) }
+    }
+
+    /**
+     Represents the location type of a swimming workout.
+
+     This field may be set on an ``HKWorkout`` object to represent the swimming location type.
+     - String value: `HKSwimmingLocationType`
+     - HealthKit Constant: ``HKMetadataKeySwimmingLocationType``
+     */
+    public var swimmingLocationType: HKWorkoutSwimmingLocationType?{
+        get { integerType(for: .swimmingLocationType) }
+        set { set(int: newValue, for: .swimmingLocationType) }
+    }
+
+    /**
+     Represents the predominant stroke style during a lap of a swimming workout.
+
+     This field may be set on an ``HKWorkoutEvent`` object with the type ``HKWorkoutEventTypeLap`` to represent the predominant style used during the lap.
+     - String value: `HKSwimmingStrokeStyle`
+     - HealthKit Constant: ``HKMetadataKeySwimmingStrokeStyle``
+     */
+    public var swimmingStrokeStyle: HKSwimmingStrokeStyle? {
+        get { integerType(for: .swimmingStrokeStyle) }
+        set { set(int: newValue, for: .swimmingStrokeStyle) }
+    }
+
+    /**
+     Represents sum of strokes per length and time for the length.
+     Calculated for each lap event and segment event during swimming workout.
+
+     This field may be set on an ``HKWorkout`` object to represent the SWOLF Score during the whole workout.
+     */
+    public var swoflScore: Int? {
+        get { integer(for: .swoflScore) }
+        set { set(number: newValue, for: .swoflScore) }
+    }
+
+    /**
+     A unique string that identifies a piece of data so it can be updated and synced.
+
+     If you add this key to an object’s metadata, you must also add the ``HKMetadataKeySyncVersion`` key.
+
+     When you save an ``HKObject`` with a sync identifier, the system looks for any existing objects with the same sync identifier.
+     If it finds a match, the system compares the objects' ``HKMetadataKeySyncVersion`` values.
+     If the new object has a greater sync version, the system replaces the old object with the new one.
+     If the old object is associated with a workout or part of a correlation, the system also replaces the old object in the workout or correlation.
+     - Value type: ``String``
+     - String value: `HKCoachedWorkout`
+     - HealthKit Constant: ``HKMetadataKeySyncIdentifier``
+     */
+    public var syncIdentifier: String? {
+        get { value(for: .syncIdentifier) }
+        set { set(value: newValue, for: .syncIdentifier) }
+    }
+
+    /**
+     The user’s time zone when the HealthKit object was created.
+
+     This key takes a string value compatible with the ``NSTimeZone`` class’s ``timeZoneWithName:`` method.
+     For best results when analyzing sleep samples, it's recommended that you store time zone metadata with your sleep sample data.
+     - String value: `HKTimeZone`
+     - HealthKit Constant: ``HKMetadataKeyTimeZone``
+     */
+    public var timeZone: String? {
+        get { value(for: .timeZone) }
+        set { set(value: newValue, for: .timeZone) }
+    }
+
+    /**
+     The device identifier portion of a device’s UDI (unique device identifier).
+
+     The device identifier can be used to reference the GUDID (Globally Unique Device Identification Database).
+
+     - Note: In iOS 9.0 and later, the use of this key is discouraged. Use the ``HKDevice`` class instead.
+
+     - String value: `HKUDIDeviceIdentifier`
+     - HealthKit Constant: ``HKMetadataKeyUDIDeviceIdentifier``
+     */
+    public var udiDeviceIdentifier: String? {
+        get { value(for: .udiDeviceIdentifier) }
+        set { set(value: newValue, for: .udiDeviceIdentifier) }
+    }
+
+    /**
+     The production identifier portion of a device’s UDI (unique device identifier).
+
+     Although the production identifier is part of a device's UDI, it is not saved in the FDA's GUDID (Globally Unique Device Identifier Database), and its use in HealthKit is now discouraged to protect user privacy.
+     Apps that need this information should store it outside the HealthKit store.
+     - String value: `HKUDIProductionIdentifier`
+     - HealthKit Constant: ``HKMetadataKeyUDIProductionIdentifier``
+     */
+    public var udiProductionIdentifier: String? {
+        get { value(for: .udiProductionIdentifier) }
+        set { set(value: newValue, for: .udiProductionIdentifier) }
+    }
+
+    /**
+     Represents the user's motion when a particular sample was taken.
+
+     The expected value type is an ``NSNumber`` containing a ``HKUserMotionContext`` value.
+     The value is active (``HKUserMotionContextActive``) if the user is in motion or working out, stationary if the user is still (``HKUserMotionContextStationary``), or not set (``HKUserMotionContextNotSet``) otherwise.
+     - String value: `HKMetadataKeyUserMotionContext`
+     - HealthKit Constant: ``HKMetadataKeyUserMotionContext``
+     */
+    @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
+    public var userMotionContext: HKUserMotionContext {
+        get { integerType(for: .userMotionContext) ?? .notSet }
+        set { set(int: newValue, for: .userMotionContext) }
+    }
+
+    /**
+     The method used to calculate the user’s VO2 max rate.
+
+     - String value: `HKVO2MaxTestType`
+     - HealthKit Constant: ``HKMetadataKeyVO2MaxTestType``
+     */
+    public var vO2MaxTestType: HKVO2MaxTestType? {
+        get { integerType(for: .vO2MaxTestType) }
+        set { set(int: newValue, for: .vO2MaxTestType) }
+    }
+
+    /**
+     The maximum oxygen consumption rate during exercise of increasing intensity.
+
+     The system sets this key on ``lowCardioFitnessEvent`` samples.
+     It contains the value of the VO2 max measurement that triggered the event.
+     The value of this key is an ``HKQuantity`` object with a unit of `ml/(kg*min)`.
+     For more information on working with complex units, see [unitMultiplied(by:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615718-unitmultiplied), [unitDivided(by:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615242-unitdivided), and [init(from:)](doc://com.apple.documentation/documentation/healthkit/hkunit/1615733-init).
+     - Value type: ``HKQuantity`` unit `ml/(kg*min)`
+     - String value: `HKVO2MaxValue`
+     - HealthKit Constant: ``HKMetadataKeyVO2MaxValue``
+     */
+    public var vo2MaxValue: HKQuantity? {
+        get { quantity(for: .vo2MaxValue) }
+        set { set(quantity: newValue, for: .vo2MaxValue) }
+    }
+
+    /**
+     A key that indicates whether the sample was taken in a lab.
+
+     Set this key’s value to true if the sample was taken by a lab; otherwise, set it to false.
+
+     - String value: `HKMetadataKeyWasTakenInLab`
+     - HealthKit Constant: ``HKMetadataKeyWasTakenInLab``
+     */
+    public var wasTakenInLab: Bool? {
+        get { value(for: .wasTakenInLab) }
+        set { set(value: newValue, for: .wasTakenInLab) }
+    }
+
+    /**
+     A key that indicates whether the sample was entered by the user.
+
+     Set this key’s value to true if the sample was entered by the user; otherwise, set it to false.
+
+     - String value: `HKWasUserEntered`
+     - HealthKit Constant: ``HKMetadataKeyWasUserEntered``
+     */
+    public var wasUserEntered: Bool? {
+        get { value(for: .wasUserEntered) }
+        set { set(value: newValue, for: .wasUserEntered) }
+    }
+
+    /**
+     Represents the water salinity for an underwater depth or water temperature sample.
+
+     The expected value type is an ``NSNumber`` containing a ``HKWaterSalinity`` value.
+     - Value type: ``NSNumber``
+     - String value: `HKMetadataKeyWaterSalinity`
+     - HealthKit Constant: ``HKMetadataKeyWaterSalinity``
+     */
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, *)
+    public var waterSalinity: HKWaterSalinity? {
+        get { integerType(for: .waterSalinity) }
+        set { set(int: newValue, for: .waterSalinity) }
+    }
+
+    /**
+     Represents the weather humidity during the sample.
+
+     The expected value type is an ``HKQuantity`` expressed in percent.
+     This key may be set on an ``HKWorkout`` object to represent the overall humidity during the workout.
+     - String value: `HKWeatherHumidity`
+     - HealthKit Constant: ``HKMetadataKeyWeatherHumidity``
+     */
+    public var weatherHumidity: HKQuantity? {
+        get { quantity(for: .weatherHumidity) }
+        set { set(quantity: newValue, for: .weatherHumidity) }
+    }
+
+    /**
+     Represents the weather temperature during the sample.
+
+     The expected value type is an ``HKQuantity`` expressed in a temperature unit.
+     This key may be set on an ``HKWorkout`` object to represent the overall temperature during the workout.
+     - Value type: ``Quantity``, unit degF
+     - String value: `HKWeatherTemperature`
+     - HealthKit Constant: ``HKMetadataKeyWeatherTemperature``
+     */
+    public var weatherTemperature: HKQuantity? {
+        get { quantity(for: .weatherTemperature) }
+        set { set(quantity: newValue, for: .weatherTemperature) }
+    }
+
+    /**
+     The brand name of a particular workout.
+
+     - String value: `HKWorkoutBrandName`
+     - HealthKit Constant: ``HKMetadataKeyWorkoutBrandName``
+     */
+    public var workoutBrandName: String? {
+        get { value(for: .workoutBrandName) }
+        set { set(value: newValue, for: .workoutBrandName) }
+    }
 }
 
 extension Metadata? {

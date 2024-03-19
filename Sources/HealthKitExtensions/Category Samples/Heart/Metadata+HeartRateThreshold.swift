@@ -3,15 +3,6 @@ import HealthKit
 
 extension Metadata {
 
-    var heartRateEventThreshold: HKQuantity? {
-        get {
-            self[.heartRateEventThreshold]
-        }
-        set {
-            self[.heartRateEventThreshold] = newValue
-        }
-    }
-
     var heartRateEventThresholdBpm: Double? {
         get {
             let beatsPerMinute = HKUnit.count().unitDivided(by: .minute())

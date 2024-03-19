@@ -368,20 +368,25 @@ public enum HKMetadataKey: String {
 
      This key takes an ``NSNumber`` containing an ``HKHeartRateMotionContext`` as its value.
      - Value type: ``Int``
-     - String value: ``
+     - String value: `HKMetadataKeyHeartRateMotionContext`
      - HealthKit Constant: ``HKMetadataKeyHeartRateMotionContext``
      */
     case heartRateMotionContext = "HKMetadataKeyHeartRateMotionContext"
 
     /**
+     Represents the duration of activity which preceded a Heart Rate Recovery value
+
+     The expected value type is an ``HKQuantity`` object compatible with a time unit.
      - Value type: ``Quantity``, unit s
      - String value: `HKMetadataKeyHeartRateRecoveryActivityDuration`
      - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryActivityDuration``
      */
     @available(iOS 16.0, macOS 13.0, watchOS 9.0, *)
     case heartRateRecoveryActivityDuration = "HKMetadataKeyHeartRateRecoveryActivityDuration"
-
     /**
+     Represents the activity which preceded a Heart Rate Recovery value
+
+     The expected value type is an ``NSNumber`` containing a ``HKWorkoutActivityType`` value.
      - Value type: ``NSNumber``
      - String value: `HKMetadataKeyHeartRateRecoveryActivityType`
      - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryActivityType``
@@ -390,6 +395,9 @@ public enum HKMetadataKey: String {
     case heartRateRecoveryActivityType = "HKMetadataKeyHeartRateRecoveryActivityType"
 
     /**
+     Represents the maximum heart rate observed during the corresponding Heart Rate Recovery sample interval.
+
+     The expected value type is an HKQuantity object compatible with "count/min" unit (eg "BPM").
      - Value type: ``Quantity``, unit count/min
      - String value: `HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate`
      - HealthKit Constant: ``HKMetadataKeyHeartRateRecoveryMaxObservedRecoveryHeartRate``
@@ -401,6 +409,7 @@ public enum HKMetadataKey: String {
      The type of test that the source used to calculate a person’s heart-rate recovery.
 
      Use this metadata key to identify the type of test that the ``HKSource`` used to calculate the value for a ``heartRateRecoveryOneMinute`` sample.
+     The expected value type is an NSNumber containing a HKHeartRateRecoveryTestType value.
 
      - Value type: ``NSNumber``
      - String value: `HKMetadataKeyHeartRateRecoveryTestType`
@@ -431,6 +440,9 @@ public enum HKMetadataKey: String {
     case indoorBikeDistance = "HKIndoorBikeDistance"
 
     /**
+     Represents whether or not a workout was performed indoors as opposed to outdoors.
+
+     The expected value type is an ``NSNumber`` containing a BOOL value.
      - Value type: ``NSNumber``
      - String value: `HKIndoorWorkout`
      - HealthKit Constant: ``HKMetadataKeyIndoorWorkout``
@@ -479,6 +491,10 @@ public enum HKMetadataKey: String {
     case lowCardioFitnessEventThreshold = "HKLowCardioFitnessEventThreshold"
 
     /**
+     Represents the length of a lap recorded during a workout.
+     
+     The expected value type is an ``HKQuantity`` object compatible with a length unit.
+     This key may be set on an ``HKWorkout`` object to represent the length of a lap.
      - Value type: ``HKQuantity``, unit meter
      - String value: `HKLapLength`
      - HealthKit Constant: ``HKMetadataKeyLapLength``
@@ -486,6 +502,9 @@ public enum HKMetadataKey: String {
     case lapLength = "HKLapLength"
 
     /**
+     Represents maximum intensity of light for an outdoor time sample.
+
+     The expected value type is an ``HKQuantity`` expressed in HKUnit Lux.
      - Value type: ``Quantity``, unit lx
      - String value: `HKMetadataKeyMaximumLightIntensity`
      - HealthKit Constant: ``HKMetadataKeyMaximumLightIntensity``
@@ -519,6 +538,9 @@ public enum HKMetadataKey: String {
     case menstrualCycleStart = "HKMenstrualCycleStart"
 
     /**
+     Represents the estimation type used to create the Physical Effort Sample
+
+     The expected value type is an ``NSNumber`` containing a ``HKPhysicalEffortEstimationType`` value.
      - Value type: ``NSNumber``
      - String value: `HKPhysicalEffortEstimationType`
      - HealthKit Constant: ``HKMetadataKeyPhysicalEffortEstimationType``
@@ -569,7 +591,10 @@ public enum HKMetadataKey: String {
     case referenceRangeUpperLimit = "HKReferenceRangeUpperLimit"
 
     /**
-     - Value type: ``Quantity``, unit count/min
+     Represents a per-session estimate prior to longitudinal smoothing applied to the value stored in the associated HKQuantitySample.
+
+     The expected value type is an ``HKQuantity`` object with a unit compatible with the associated ``HKQuantitySample``.
+     - Value type: ``Quantity``
      - String value: `HKMetadataKeySessionEstimate`
      - HealthKit Constant: ``HKMetadataKeySessionEstimate``
      */
@@ -602,6 +627,10 @@ public enum HKMetadataKey: String {
     case subIndex = "subIndex"
 
     /**
+     Represents the location type of a swimming workout.
+    
+     The expected value type is an ``NSNumber`` containing an ``HKWorkoutSwimmingLocationType`` value.
+     This key may be set on an ``HKWorkout`` object to represent the swimming location type.
      - Value type: ``NSNumber``
      - String value: `HKSwimmingLocationType`
      - HealthKit Constant: ``HKMetadataKeySwimmingLocationType``
@@ -609,6 +638,9 @@ public enum HKMetadataKey: String {
     case swimmingLocationType = "HKSwimmingLocationType"
 
     /**
+     Represents the predominant stroke style during a lap of a swimming workout.
+     
+     The expected value type is an ``NSNumber`` containing an ``HKSwimmingStrokeStyle`` value. This key may be set on an ``HKWorkoutEvent`` object with the type ``HKWorkoutEventTypeLap`` to represent the predominant style used during the lap.
      - Value type: ``NSNumber`` (``HKSwimmingStrokeStyle``)
      - String value: `HKSwimmingStrokeStyle`
      - HealthKit Constant: ``HKMetadataKeySwimmingStrokeStyle``
@@ -677,6 +709,10 @@ public enum HKMetadataKey: String {
     case udiProductionIdentifier = "HKUDIProductionIdentifier"
 
     /**
+     Represents the user's motion when a particular sample was taken.
+     
+     The expected value type is an ``NSNumber`` containing a ``HKUserMotionContext`` value.
+     The value is active (``HKUserMotionContextActive``) if the user is in motion or working out, stationary if the user is still (``HKUserMotionContextStationary``), or not set (``HKUserMotionContextNotSet``) otherwise.
      - Value type: ``NSNumber``
      - String value: `HKMetadataKeyUserMotionContext`
      - HealthKit Constant: ``HKMetadataKeyUserMotionContext``
@@ -741,6 +777,10 @@ public enum HKMetadataKey: String {
     case waterSalinity = "HKMetadataKeyWaterSalinity"
 
     /**
+     Represents the weather humidity during the sample.
+     
+     The expected value type is an ``HKQuantity`` expressed in percent.
+     This key may be set on an ``HKWorkout`` object to represent the overall humidity during the workout.
      - Value type: ``Quantity``, unit %
      - String value: `HKWeatherHumidity`
      - HealthKit Constant: ``HKMetadataKeyWeatherHumidity``
@@ -748,6 +788,10 @@ public enum HKMetadataKey: String {
     case weatherHumidity = "HKWeatherHumidity"
 
     /**
+     Represents the weather temperature during the sample.
+     
+     The expected value type is an ``HKQuantity`` expressed in a temperature unit.
+     This key may be set on an ``HKWorkout`` object to represent the overall temperature during the workout.
      - Value type: ``Quantity``, unit degF
      - String value: `HKWeatherTemperature`
      - HealthKit Constant: ``HKMetadataKeyWeatherTemperature``
