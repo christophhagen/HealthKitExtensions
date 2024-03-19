@@ -11,18 +11,6 @@ import HealthKit
 public enum HKMetadataKey: String {
 
     /**
-     Represents the test used to determine a Cycling Functional Threshold Power value.
-
-     The expected value type is an ``NSNumber`` containing a ``HKCyclingFunctionalThresholdPowerTestType`` value.
-
-     - Value type: ``NSNumber``
-     - String value: `HKCyclingCyclingFunctionalThresholdPowerTestType`
-     - HealthKit Constant: ``HKMetadataKeyCyclingFunctionalThresholdPowerTestType``
-     */
-    @available(macOS 14.0, iOS 17.0, watchOS 10.0, *)
-    case cyclingFunctionalThresholdPowerTestType = "HKCyclingCyclingFunctionalThresholdPowerTestType"
-
-    /**
      Represents the activity type related to the sample
 
      The expected value type is an ``NSNumber`` containing a ``HKWorkoutActivityType`` value.
@@ -110,12 +98,17 @@ public enum HKMetadataKey: String {
     case audioExposureLevel = "HKMetadataKeyAudioExposureLevel"
 
     /**
-     - Value type: ``Quantity``, unit kcal/hr·kg
+     Represents the average METs, or Metabolic Equivalent of Task during a workout.
+
+     The expected value type is an ``HKQuantity`` expressed in a METs (`kcal/(kg*hr)`) unit.
+     This key may be set on an ``HKWorkout`` object to represent the average workout intensity represented as METs over the entire workout duration.
+
+     - Value type: ``HKQuantity``, unit kcal/hr·kg
      - String value: `HKAverageMETs`
      - HealthKit Constant: ``HKMetadataKeyAverageMETs``
      */
     case averageMETs = "HKAverageMETs"
-
+    
     /**
      A key that indicates the average speed during a workout.
 
@@ -133,6 +126,9 @@ public enum HKMetadataKey: String {
     case averageSpeed = "HKAverageSpeed"
 
     /**
+     Represents the barometric pressure recorded at the time of a sample.
+
+     The expected value type is an ``HKQuantity`` representing a value in units of pressure (atmospheres, pascals, millimeters of Mercury).
      - Value type: ``Quantity``, unit kPa
      - String value: `HKMetadataKeyBarometricPressure`
      - HealthKit Constant: ``HKMetadataKeyBarometricPressure``
@@ -182,6 +178,18 @@ public enum HKMetadataKey: String {
      - HealthKit Constant: ``HKMetadataKeyCrossTrainerDistance``
      */
     case crossTrainerDistance = "HKCrossTrainerDistance"
+
+    /**
+     Represents the test used to determine a Cycling Functional Threshold Power value.
+
+     The expected value type is an ``NSNumber`` containing a ``HKCyclingFunctionalThresholdPowerTestType`` value.
+
+     - Value type: ``NSNumber``
+     - String value: `HKCyclingCyclingFunctionalThresholdPowerTestType`
+     - HealthKit Constant: ``HKMetadataKeyCyclingFunctionalThresholdPowerTestType``
+     */
+    @available(macOS 14.0, iOS 17.0, watchOS 10.0, *)
+    case cyclingFunctionalThresholdPowerTestType = "HKCyclingCyclingFunctionalThresholdPowerTestType"
 
     /**
      The earliest date of data used to calculate the sample’s estimated value.
@@ -251,6 +259,10 @@ public enum HKMetadataKey: String {
     case digitalSignature = "HKDigitalSignature"
 
     /**
+     Represents the cumulative elevation ascent during a workout.
+     
+     The expected value type is an ``HKQuantity`` object compatible with length unit.
+     This key may be set on a workout, workout segments or distance samples.
      - Value type: ``Quantity``, unit cm
      - String value: `HKElevationAscended`
      - HealthKit Constant: ``HKMetadataKeyElevationAscended``

@@ -29,6 +29,28 @@ extension Metadata {
         return value.intValue
     }
 
+    func integerType<T>(for key: HKMetadataKey) -> T? where T: RawRepresentable, T.RawValue == Int {
+        guard let value = self[key.rawValue] as? NSNumber else {
+            return nil
+        }
+        return T.init(rawValue: value.intValue)
+    }
+
+    func uintType<T>(for key: HKMetadataKey) -> T? where T: RawRepresentable, T.RawValue == UInt {
+        guard let value = self[key.rawValue] as? NSNumber else {
+            return nil
+        }
+        return T.init(rawValue: value.uintValue)
+    }
+
+    mutating func set<T>(int: T?, for key: HKMetadataKey) where T: RawRepresentable, T.RawValue == Int {
+        self[key] = (int?.rawValue).map { $0 as NSNumber }
+    }
+
+    mutating func set<T>(uint: T?, for key: HKMetadataKey) where T: RawRepresentable, T.RawValue == UInt {
+        self[key] = (uint?.rawValue).map { $0 as NSNumber }
+    }
+
     mutating func set(number: Int?, for key: HKMetadataKey) {
         self[key] = number.map { $0 as NSNumber }
     }
