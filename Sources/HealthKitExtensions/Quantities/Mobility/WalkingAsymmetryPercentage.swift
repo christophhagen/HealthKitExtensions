@@ -40,9 +40,6 @@ extension WalkingAsymmetryPercentage {
      Indicates the placement of the device that measured a sample.
      */
     var devicePlacementSide: HKDevicePlacementSide? {
-        guard let number: NSNumber = metadata?[.devicePlacementSide] else {
-            return nil
-        }
-        return .init(rawValue: number.intValue)
+        metadata?.devicePlacementSide
     }
 }

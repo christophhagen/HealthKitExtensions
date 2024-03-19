@@ -105,9 +105,11 @@ The library still provides a more convenient way to interact with metadata:
 
 ```swift
 var metadata = Metadata() // typealias for [String : Any]
-metadata[.menstrualCycleStart] = true // Sets HKMetadataKeyMenstrualCycleStart
-let cycleStart: Bool = metadata[.menstrualCycleStart]
+metadata.menstrualCycleStart = true // Sets HKMetadataKeyMenstrualCycleStart
+let cycleStart: Bool = metadata.menstrualCycleStart
 ```
+
+This shorthand format works for all known keys defined in the `HKMetadataKey` enum.
 
 ## Queries
 

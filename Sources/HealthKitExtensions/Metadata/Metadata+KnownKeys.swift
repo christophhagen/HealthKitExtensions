@@ -421,8 +421,8 @@ extension Metadata {
      - String value: `HKMetadataKeyHeartRateMotionContext`
      - HealthKit Constant: ``HKMetadataKeyHeartRateMotionContext``
      */
-    public var heartRateMotionContext: HKHeartRateMotionContext? {
-        get { integerType(for: .heartRateMotionContext) }
+    public var heartRateMotionContext: HKHeartRateMotionContext {
+        get { integerType(for: .heartRateMotionContext) ?? .notSet }
         set { set(int: newValue, for: .heartRateMotionContext) }
     }
 

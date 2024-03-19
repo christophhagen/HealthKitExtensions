@@ -23,7 +23,7 @@ public struct SleepAnalysis: HKCategoryEnumSample {
 extension SleepAnalysis {
 
     public var timeZone: TimeZone? {
-        guard let timeZoneString: String = metadata?[.timeZone] else {
+        guard let timeZoneString: String = metadata?.timeZone else {
             return nil
         }
         return TimeZone(identifier: timeZoneString)
@@ -31,7 +31,7 @@ extension SleepAnalysis {
 
     public init(value: HKCategoryValueSleepAnalysis, timeZone: TimeZone, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.timeZone] = timeZone.identifier
+        metadata.timeZone = timeZone.identifier
         self.init(value: value, start: start, end: end, device: device, metadata: metadata)
     }
 }

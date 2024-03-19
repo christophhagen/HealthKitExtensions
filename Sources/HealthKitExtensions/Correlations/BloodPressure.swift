@@ -36,7 +36,7 @@ extension BloodPressure {
     }
 
     public var foodType: String? {
-        metadata?[.foodType]
+        metadata?.foodType
     }
 
     /// The associated systolic blood pressure sample

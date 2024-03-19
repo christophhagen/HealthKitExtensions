@@ -25,15 +25,12 @@ extension InsulinDelivery {
 
     /// The medical reason for administering insulin.
     var reason: HKInsulinDeliveryReason? {
-        guard let value: NSNumber = metadata?[.insulinDeliveryReason] else {
-            return nil
-        }
-        return .init(rawValue: value.intValue)
+        metadata?.insulinDeliveryReason
     }
 
     public init(amount: Double, reason: HKInsulinDeliveryReason, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.insulinDeliveryReason] = NSNumber(value: reason.rawValue)
+        metadata.insulinDeliveryReason = reason
         self.init(value: amount, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
     }
 }

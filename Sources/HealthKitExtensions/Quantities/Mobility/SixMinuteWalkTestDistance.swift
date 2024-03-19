@@ -61,7 +61,7 @@ extension SixMinuteWalkTestDistance {
      The key is read-only.
      */
     public var appleDeviceCalibrated: Bool? {
-        metadata?[.appleDeviceCalibrated]
+        metadata?.appleDeviceCalibrated
     }
 
 }

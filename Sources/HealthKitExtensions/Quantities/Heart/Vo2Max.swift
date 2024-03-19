@@ -57,10 +57,7 @@ extension Vo2Max {
      The method used to calculate the user’s VO2 max rate.
      */
     public var testType: HKVO2MaxTestType? {
-        guard let number: NSNumber = metadata?[.vO2MaxTestType] else {
-            return nil
-        }
-        return .init(rawValue: number.intValue)
+        metadata?.vO2MaxTestType
     }
 
     /**
@@ -69,7 +66,7 @@ extension Vo2Max {
      */
     public init(value: Double, testType: HKVO2MaxTestType, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.vO2MaxTestType] = NSNumber(value: testType.rawValue)
+        metadata.vO2MaxTestType = testType
         self.init(value: value, start: start, end: end, device: device, metadata: metadata)
     }
 
@@ -79,7 +76,7 @@ extension Vo2Max {
      */
     public init(value: Double, testType: HKVO2MaxTestType, start: Date, end: Date, uuid: UUID, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.vO2MaxTestType] = NSNumber(value: testType.rawValue)
+        metadata.vO2MaxTestType = testType
         self.init(value: value, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
     }
 }

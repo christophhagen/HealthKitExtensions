@@ -48,7 +48,7 @@ extension LowCardioFitnessEvent {
     ///
     /// The VO2 Max value (in `ml/(kg·min)`)
     public var vo2MaxValue: Double? {
-        metadata?.quantityValue(for: .vo2MaxValue, unit: Self.mlPerKgMin)
+        metadata?.vo2MaxValue?.doubleValue(for: Self.mlPerKgMin)
     }
 
     /// The threshold value used to calculate the Low cardio classification (in `ml/(kg·min)`).
@@ -59,14 +59,14 @@ extension LowCardioFitnessEvent {
     /// A low-cardio fitness event indicates a period of time when the user’s VO2 max measurements consistently fall below the defined value.
     /// The system triggers this event approximately once every four months.
     public var fitnessThreshold: Double? {
-        metadata?.quantityValue(for: .lowCardioFitnessEventThreshold, unit: Self.mlPerKgMin)
+        metadata?.lowCardioFitnessEventThreshold?.doubleValue(for: Self.mlPerKgMin)
     }
 
     public init(value: HKCategoryValueLowCardioFitnessEvent, vo2MaxValue: Double, fitnessThreshold: Double, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         let unit = Self.mlPerKgMin
         var metadata = metadata ?? [:]
-        metadata[.vo2MaxValue] = HKQuantity(unit: unit, doubleValue: vo2MaxValue)
-        metadata[.lowCardioFitnessEventThreshold] = HKQuantity(unit: unit, doubleValue: fitnessThreshold)
+        metadata.vo2MaxValue = HKQuantity(unit: unit, doubleValue: vo2MaxValue)
+        metadata.lowCardioFitnessEventThreshold = HKQuantity(unit: unit, doubleValue: fitnessThreshold)
         self.init(value: value, start: start, end: end, device: device, metadata: metadata)
     }
 }

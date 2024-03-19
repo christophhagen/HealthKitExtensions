@@ -33,7 +33,7 @@ extension MenstrualFlow {
 
     /// Indicates whether the sample represents the start of a menstrual cycle.
     public var cycleStart: Bool? {
-        metadata?[.menstrualCycleStart]
+        metadata?.menstrualCycleStart
     }
 
     /**
@@ -41,7 +41,7 @@ extension MenstrualFlow {
      */
     public init(value: HKCategoryValueMenstrualFlow, cycleStart: Bool, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.menstrualCycleStart] = cycleStart
+        metadata.menstrualCycleStart = cycleStart
         self.init(value: value, start: start, end: end, device: device, metadata: metadata)
     }
 }

@@ -21,12 +21,12 @@ public struct SexualActivity: HKCategoryEmptySample {
     Indicates if protection was used during sexual activity
      */
     public var protectionUsed: Bool? {
-        metadata?[.sexualActivityProtectionUsed]
+        metadata?.sexualActivityProtectionUsed
     }
 
     public init(protectionUsed: Bool, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.sexualActivityProtectionUsed] = protectionUsed
+        metadata.sexualActivityProtectionUsed = protectionUsed
         self.init(start: start, end: end, device: device, metadata: metadata)
     }
 }

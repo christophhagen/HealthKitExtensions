@@ -42,7 +42,7 @@ extension HeartRate {
 
     public init(countsPerSecond: Double, motionContext: HKHeartRateMotionContext, start: Date, end: Date, uuid: UUID? = nil, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
         var metadata = metadata ?? [:]
-        metadata[.heartRateMotionContext] = NSNumber(value: motionContext.rawValue)
+        metadata.heartRateMotionContext = motionContext
         self.init(value: countsPerSecond, start: start, end: end, uuid: uuid, device: device, metadata: metadata)
     }
 
@@ -67,9 +67,6 @@ extension HeartRate {
      Treat these samples as if they used the ``HKHeartRateMotionContext.notSet`` motion context.
      */
     public var motionContext: HKHeartRateMotionContext {
-        guard let number: NSNumber = metadata?[.heartRateMotionContext] else {
-            return .notSet
-        }
-        return .init(rawValue: number.intValue) ?? .notSet
+        metadata?.heartRateMotionContext ?? .notSet
     }
 }
