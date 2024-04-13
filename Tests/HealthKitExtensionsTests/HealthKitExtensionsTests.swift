@@ -407,4 +407,23 @@ final class HealthKitExtensionsTests: XCTestCase {
         compare(.weatherTemperature, HKMetadataKeyWeatherTemperature)
         compare(.workoutBrandName, HKMetadataKeyWorkoutBrandName)
     }
+
+    func testQuantityTypeUnit() throws {
+        func compare(_ id: HKQuantityTypeIdentifier) {
+            let type = HKQuantityType(id)
+            XCTAssertEqual(id.rawValue, type.identifier)
+            guard let defaultUnit = id.defaultUnit else {
+                return
+            }
+            guard let typeUnit = type.defaultUnit else {
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(defaultUnit, typeUnit)
+        }
+
+        for id in HKQuantityTypeIdentifier.allCases {
+            compare(id)
+        }
+    }
 }
