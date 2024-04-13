@@ -172,7 +172,7 @@ let samples: [Vo2Max] = try await store.samples(
 ### Workouts 
 
 ```swift
-let runs = try await store.read(
+let runs = try await store.workouts(
     activityType: .running,
     from: Date.distantPast,
     to: Date.now,
