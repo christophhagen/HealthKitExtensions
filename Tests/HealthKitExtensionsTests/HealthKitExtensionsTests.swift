@@ -131,12 +131,12 @@ final class HealthKitExtensionsTests: XCTestCase {
     func testMetadataSubscript() {
 
         var metadata = Metadata()
-        metadata[.menstrualCycleStart] = true
+        metadata.menstrualCycleStart = true
 
-        let cycleStart: Bool? = metadata[.menstrualCycleStart]
+        let cycleStart: Bool? = metadata.menstrualCycleStart
         XCTAssertEqual(cycleStart, true)
 
-        if let start: Bool = metadata[.menstrualCycleStart] {
+        if let start: Bool = metadata.menstrualCycleStart {
             XCTAssertEqual(start, true)
         } else {
             XCTFail()

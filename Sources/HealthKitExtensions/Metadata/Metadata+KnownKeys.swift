@@ -46,7 +46,6 @@ extension Metadata {
     /**
      The key for metadata indicating whether the system had data from a sufficient amount of calibrated sensors when recording the sample.
 
-     This key takes a Boolean value.
      If it’s true, the system has enough high-quality data to make an accurate estimate.
      If it’s false, the system provides an estimate based on data that may be less accurate.
 

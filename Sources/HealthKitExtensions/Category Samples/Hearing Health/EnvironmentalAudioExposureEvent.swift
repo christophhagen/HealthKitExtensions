@@ -26,4 +26,42 @@ public struct EnvironmentalAudioExposureEvent: HKCategoryEnumSample {
     public init(categorySample: HKCategorySample) {
         self.categorySample = categorySample
     }
+
+    /**
+     Create an environmental audio exposure event.
+     - Parameter event: Exposure events for headphone audio.
+     - Parameter audioExposureDuration: The audio level associated with an audio event.
+     - Parameter audioExposureLevel: The audio level associated with an audio event.
+     */
+    public init(event: HKCategoryValueEnvironmentalAudioExposureEvent, audioExposureDuration: HKQuantity?, audioExposureLevel: HKQuantity?, start: Date, end: Date, device: HKDevice? = nil, metadata: [String : Any]? = nil) {
+        var metadata = metadata ?? [:]
+        metadata.audioExposureDuration = audioExposureDuration
+        metadata.audioExposureLevel = audioExposureLevel
+        self.init(value: event, start: start, end: end, device: device, metadata: metadata)
+    }
+
+    /**
+     The audio exposure event’s duration.
+
+     It contains an ``HKQuantity`` with the audio level measured in units of time.
+
+     - String value: `HKMetadataKeyAudioExposureDuration`
+     - HealthKit Constant: ``HKMetadataKeyAudioExposureDuration``
+     */
+    public var audioExposureDuration: HKQuantity? {
+        metadata?.audioExposureDuration
+    }
+
+    /**
+     The audio level associated with an audio event.
+
+     It takes an ``HKQuantity`` containing the audio level measured in ``decibelAWeightedSoundPressureLevel()`` units.
+
+     - Value type: ``Quantity``, unit dBASPL
+     - String value: `HKMetadataKeyAudioExposureLevel`
+     - HealthKit Constant: ``HKMetadataKeyAudioExposureLevel``
+     */
+    public var audioExposureLevel: HKQuantity? {
+        metadata?.audioExposureLevel
+    }
 }
