@@ -166,7 +166,7 @@ extension HKCategoryTypeIdentifier: CustomStringConvertible {
         case .coughing: return "Coughing"
         case .diarrhea: return "Diarrhea"
         case .dizziness: return "Dizziness"
-        case .drySkin: return "DrySkin"
+        case .drySkin: return "Dry Skin"
         case .fainting: return "Fainting"
         case .fatigue: return "Fatigue"
         case .fever: return "Fever"
