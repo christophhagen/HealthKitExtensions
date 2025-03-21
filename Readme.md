@@ -119,7 +119,7 @@ Interacting with the `HKHealthStore` can be simplified by wrapping it in a `Heal
 let store = HealthStore(wrapping: HKHealthStore())
 ```
 
-It's then possible to use all the convenience functions on `HealthStore`, or (for complex queries) just use the `store: HKHealthStore` property as oine normally would.
+It's then possible to use all the convenience functions on `HealthStore`, or (for complex queries) just use the `store: HKHealthStore` property as one normally would.
 
 The `HealthStore` functions make a lot of use of `async`/`await` instead of completion handlers, and use the convenience sample types described above.
 
